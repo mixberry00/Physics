@@ -47,16 +47,17 @@ private:
 
     QTimer *timer;
 
-    Qt3DCore::QEntity *box;
+    /*Qt3DCore::QEntity *box;
     Qt3DCore::QEntity *stand;
     Qt3DCore::QEntity *disk;
     Qt3DCore::QEntity *axis;
     Qt3DCore::QEntity *load1;
     Qt3DCore::QEntity *load2;
-    Qt3DCore::QEntity *load3;
+    Qt3DCore::QEntity *load3;*
 
     Qt3DCore::QTransform *t;
-    Qt3DCore::QTransform *t1;
+    Qt3DCore::QTransform *t1;*/
+    Qt3DCore::QEntity *room;
 
     float angle = 0;
     float angle1 = 0;
