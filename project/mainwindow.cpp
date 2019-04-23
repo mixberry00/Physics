@@ -52,8 +52,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     timer = new QTimer();
     timer->setInterval(10);
-    connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
-    timer->start();
+    //connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
+    //timer->start();
 
     CreateEntity();
 }
@@ -117,6 +117,7 @@ void MainWindow::mouseWheel(QWheelEvent *ev)
 
 void MainWindow::CreateEntity()
 {
+   /*
     box = new Qt3DCore::QEntity(sceneEntity);
 
     Qt3DRender::QMesh *boxMesh = new Qt3DRender::QMesh(box);
@@ -256,14 +257,32 @@ void MainWindow::CreateEntity()
     load1->addComponent(t);
     load2->addComponent(t);
     load3->addComponent(t);
+    */
+
+    room = new Qt3DCore::QEntity(sceneEntity);
+
+    Qt3DRender::QMesh *roomMesh = new Qt3DRender::QMesh(room);
+    roomMesh->setSource(QUrl::fromLocalFile(":/Res/room.obj"));
+
+    Qt3DRender::QTextureLoader *roomLoader = new Qt3DRender::QTextureLoader(room);
+    roomLoader->setSource(QUrl::fromLocalFile(":/Res/room.png"));
+
+    Qt3DExtras::QDiffuseSpecularMapMaterial *roomMat = new Qt3DExtras::QDiffuseSpecularMapMaterial();
+    roomMat->setDiffuse(roomLoader);
+    roomMat->setShininess(1.2);
+    roomMat->setAmbient(QColor::fromRgb(255, 255, 255));
+    roomMat->setSpecular(roomLoader);
+
+    room->addComponent(roomMesh);
+    room->addComponent(roomMat);
 }
 
 void MainWindow::Update()
 {
     angle += 0.1;
     angle1 += 5;
-    t->setRotation(QQuaternion::fromAxisAndAngle(QVector3D(0.0, 1.0, 0.0), angle));
-    t1->setRotation(QQuaternion::fromAxisAndAngle(QVector3D(0.0, 1.0, 0.0), angle) * QQuaternion::fromAxisAndAngle(QVector3D(0.0, 0.0, 1.0), angle1));
+    /*t->setRotation(QQuaternion::fromAxisAndAngle(QVector3D(0.0, 1.0, 0.0), angle));
+    t1->setRotation(QQuaternion::fromAxisAndAngle(QVector3D(0.0, 1.0, 0.0), angle) * QQuaternion::fromAxisAndAngle(QVector3D(0.0, 0.0, 1.0), angle1));*/
 }
 
 void MainWindow::on_room1_clicked()
