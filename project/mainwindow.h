@@ -43,6 +43,8 @@ private slots:
 
     void on_room7_clicked();
 
+    void moveToRoom();
+
 private:
     Ui::MainWindow *ui;
     QWidget *scene;
@@ -72,6 +74,9 @@ private:
     Qt3DCore::QTransform *t;
     Qt3DCore::QTransform *t1;*/
     Qt3DCore::QEntity *room;
+
+    void cameraMoveTo(int s);
+
 
     float angle = 0;
     float angle1 = 0;
