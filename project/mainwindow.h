@@ -29,6 +29,20 @@ public:
 private slots:
     void Update();
 
+    void on_room1_clicked();
+
+    void on_room2_clicked();
+
+    void on_room3_clicked();
+
+    void on_room4_clicked();
+
+    void on_room5_clicked();
+
+    void on_room6_clicked();
+
+    void on_room7_clicked();
+
 private:
     Ui::MainWindow *ui;
     QWidget *scene;

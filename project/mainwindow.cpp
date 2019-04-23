@@ -265,3 +265,38 @@ void MainWindow::Update()
     t->setRotation(QQuaternion::fromAxisAndAngle(QVector3D(0.0, 1.0, 0.0), angle));
     t1->setRotation(QQuaternion::fromAxisAndAngle(QVector3D(0.0, 1.0, 0.0), angle) * QQuaternion::fromAxisAndAngle(QVector3D(0.0, 0.0, 1.0), angle1));
 }
+
+void MainWindow::on_room1_clicked()
+{
+    qDebug() << "1";
+}
+
+void MainWindow::on_room2_clicked()
+{
+     qDebug() << "2";
+}
+
+void MainWindow::on_room3_clicked()
+{
+     qDebug() << "3";
+}
+
+void MainWindow::on_room4_clicked()
+{
+     qDebug() << "4";
+}
+
+void MainWindow::on_room5_clicked()
+{
+     qDebug() << "5";
+}
+
+void MainWindow::on_room6_clicked()
+{
+     qDebug() << "6";
+}
+
+void MainWindow::on_room7_clicked()
+{
+     qDebug() << "7";
+}
