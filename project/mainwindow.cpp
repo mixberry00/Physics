@@ -120,10 +120,10 @@ void MainWindow::CreateEntity()
     box = new Qt3DCore::QEntity(sceneEntity);
 
     Qt3DRender::QMesh *boxMesh = new Qt3DRender::QMesh(box);
-    boxMesh->setSource(QUrl::fromLocalFile("D:/QtProjects/project/Res/box.obj"));
+    boxMesh->setSource(QUrl::fromLocalFile(":/Res/box.obj"));
 
     Qt3DRender::QTextureLoader *boxLoader = new Qt3DRender::QTextureLoader(box);
-    boxLoader->setSource(QUrl::fromLocalFile("D:/QtProjects/project/Res/boxMat.jpg"));
+    boxLoader->setSource(QUrl::fromLocalFile(":/Res/boxMat.jpg"));
 
     Qt3DExtras::QDiffuseSpecularMapMaterial *boxMat = new Qt3DExtras::QDiffuseSpecularMapMaterial();
     boxMat->setDiffuse(boxLoader);
@@ -138,10 +138,10 @@ void MainWindow::CreateEntity()
     stand = new Qt3DCore::QEntity(sceneEntity);
 
     Qt3DRender::QMesh *standMesh = new Qt3DRender::QMesh(stand);
-    standMesh->setSource(QUrl::fromLocalFile("D:/QtProjects/project/Res/stand.obj"));
+    standMesh->setSource(QUrl::fromLocalFile(":/Res/stand.obj"));
 
     Qt3DRender::QTextureLoader *standLoader = new Qt3DRender::QTextureLoader(stand);
-    standLoader->setSource(QUrl::fromLocalFile("D:/QtProjects/project/Res/standMat.png"));
+    standLoader->setSource(QUrl::fromLocalFile(":/Res/standMat.png"));
 
     Qt3DExtras::QDiffuseSpecularMapMaterial *standMat = new Qt3DExtras::QDiffuseSpecularMapMaterial();
     standMat->setDiffuse(standLoader);
@@ -157,10 +157,10 @@ void MainWindow::CreateEntity()
     disk = new Qt3DCore::QEntity(sceneEntity);
 
     Qt3DRender::QMesh *diskMesh = new Qt3DRender::QMesh(disk);
-    diskMesh->setSource(QUrl::fromLocalFile("D:/QtProjects/project/Res/disk.obj"));
+    diskMesh->setSource(QUrl::fromLocalFile(":/Res/disk.obj"));
 
     Qt3DRender::QTextureLoader *diskLoader = new Qt3DRender::QTextureLoader(disk);
-    diskLoader->setSource(QUrl::fromLocalFile("D:/QtProjects/project/Res/diskMat.png"));
+    diskLoader->setSource(QUrl::fromLocalFile(":/Res/diskMat.png"));
 
     Qt3DExtras::QDiffuseSpecularMapMaterial *diskMat = new Qt3DExtras::QDiffuseSpecularMapMaterial();
     diskMat->setDiffuse(diskLoader);
@@ -176,10 +176,10 @@ void MainWindow::CreateEntity()
     axis = new Qt3DCore::QEntity(sceneEntity);
 
     Qt3DRender::QMesh *axisMesh = new Qt3DRender::QMesh(axis);
-    axisMesh->setSource(QUrl::fromLocalFile("D:/QtProjects/project/Res/axis.obj"));
+    axisMesh->setSource(QUrl::fromLocalFile(":/Res/axis.obj"));
 
     Qt3DRender::QTextureLoader *axisLoader = new Qt3DRender::QTextureLoader(axis);
-    axisLoader->setSource(QUrl::fromLocalFile("D:/QtProjects/project/Res/axisMat.png"));
+    axisLoader->setSource(QUrl::fromLocalFile(":/Res/axisMat.png"));
 
     Qt3DExtras::QDiffuseSpecularMapMaterial *axisMat = new Qt3DExtras::QDiffuseSpecularMapMaterial();
     axisMat->setDiffuse(axisLoader);
@@ -195,10 +195,10 @@ void MainWindow::CreateEntity()
     load1 = new Qt3DCore::QEntity(sceneEntity);
 
     Qt3DRender::QMesh *load1Mesh = new Qt3DRender::QMesh(load1);
-    load1Mesh->setSource(QUrl::fromLocalFile("D:/QtProjects/project/Res/load1.obj"));
+    load1Mesh->setSource(QUrl::fromLocalFile(":/Res/load1.obj"));
 
     Qt3DRender::QTextureLoader *load1Loader = new Qt3DRender::QTextureLoader(load1);
-    load1Loader->setSource(QUrl::fromLocalFile("D:/QtProjects/project/Res/load1Mat.png"));
+    load1Loader->setSource(QUrl::fromLocalFile(":/Res/load1Mat.png"));
 
     Qt3DExtras::QDiffuseSpecularMapMaterial *load1Mat = new Qt3DExtras::QDiffuseSpecularMapMaterial();
     load1Mat->setDiffuse(load1Loader);
@@ -214,10 +214,10 @@ void MainWindow::CreateEntity()
     load2 = new Qt3DCore::QEntity(sceneEntity);
 
     Qt3DRender::QMesh *load2Mesh = new Qt3DRender::QMesh(load2);
-    load2Mesh->setSource(QUrl::fromLocalFile("D:/QtProjects/project/Res/load2.obj"));
+    load2Mesh->setSource(QUrl::fromLocalFile(":/Res/load2.obj"));
 
     Qt3DRender::QTextureLoader *load2Loader = new Qt3DRender::QTextureLoader(load2);
-    load2Loader->setSource(QUrl::fromLocalFile("D:/QtProjects/project/Res/load1Mat.png"));
+    load2Loader->setSource(QUrl::fromLocalFile(":/Res/load1Mat.png"));
 
     Qt3DExtras::QDiffuseSpecularMapMaterial *load2Mat = new Qt3DExtras::QDiffuseSpecularMapMaterial();
     load2Mat->setDiffuse(load2Loader);
@@ -233,10 +233,10 @@ void MainWindow::CreateEntity()
     load3 = new Qt3DCore::QEntity(sceneEntity);
 
     Qt3DRender::QMesh *load3Mesh = new Qt3DRender::QMesh(load3);
-    load3Mesh->setSource(QUrl::fromLocalFile("D:/QtProjects/project/Res/load3.obj"));
+    load3Mesh->setSource(QUrl::fromLocalFile(":/Res/load3.obj"));
 
     Qt3DRender::QTextureLoader *load3Loader = new Qt3DRender::QTextureLoader(load3);
-    load3Loader->setSource(QUrl::fromLocalFile("D:/QtProjects/project/Res/load1Mat.png"));
+    load3Loader->setSource(QUrl::fromLocalFile(":/Res/load1Mat.png"));
 
     Qt3DExtras::QDiffuseSpecularMapMaterial *load3Mat = new Qt3DExtras::QDiffuseSpecularMapMaterial();
     load3Mat->setDiffuse(load3Loader);
