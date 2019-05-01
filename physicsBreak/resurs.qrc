@@ -1,0 +1,44 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Res/Carpet.mtl</file>
+        <file>Res/Carpet.obj</file>
+        <file>Res/carpet.png</file>
+        <file>Res/Carpets.mtl</file>
+        <file>Res/Carpets.obj</file>
+        <file>Res/Coridor.mtl</file>
+        <file>Res/Coridor.obj</file>
+        <file>Res/Coridor.png</file>
+        <file>Res/Door.mtl</file>
+        <file>Res/Door.obj</file>
+        <file>Res/Door.png</file>
+        <file>Res/Picture.mtl</file>
+        <file>Res/Picture.obj</file>
+        <file>Res/Picture.png</file>
+        <file>Res/picture1.png</file>
+        <file>Res/picture2.png</file>
+        <file>Res/picture3.png</file>
+        <file>Res/Room.mtl</file>
+        <file>Res/Room.obj</file>
+        <file>Res/RoomB.obj</file>
+        <file>Res/room.png</file>
+        <file>Res/Rooms.mtl</file>
+        <file>Res/Rooms.obj</file>
+        <file>Res/table.mtl</file>
+        <file>Res/table.obj</file>
+        <file>Res/table.png</file>
+        <file>Res/tablemetal.jpg</file>
+        <file>Res/tablemetal.mtl</file>
+        <file>Res/tablemetal.obj</file>
+        <file>main.cpp</file>
+        <file>Res/1.jpg</file>
+        <file>Res/2.jpg</file>
+        <file>Res/3.jpg</file>
+        <file>Res/4.jpg</file>
+        <file>Res/5.jpg</file>
+        <file>Res/6.jpg</file>
+        <file>Res/CoridorB.mtl</file>
+        <file>Res/CoridorB.obj</file>
+        <file>Res/7.jpg</file>
+        <file>Res/RoomB.obj</file>
+    </qresource>
+</RCC>
