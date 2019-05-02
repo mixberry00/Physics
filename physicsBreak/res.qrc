@@ -1,18 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>Res/axis.obj</file>
-        <file>Res/axisMat.png</file>
-        <file>Res/box.obj</file>
-        <file>Res/boxMat.jpg</file>
-        <file>Res/disk.obj</file>
-        <file>Res/diskMat.png</file>
-        <file>Res/load1.obj</file>
-        <file>Res/load1Mat.png</file>
-        <file>Res/load2.obj</file>
-        <file>Res/load3.obj</file>
-        <file>Res/room.png</file>
-        <file>Res/stand.obj</file>
-        <file>Res/standMat.png</file>
         <file>Res/1.jpg</file>
         <file>Res/2.jpg</file>
         <file>Res/3.jpg</file>
@@ -20,20 +7,13 @@
         <file>Res/5.jpg</file>
         <file>Res/6.jpg</file>
         <file>Res/7.jpg</file>
-        <file>Res/carpet.png</file>
-        <file>Res/Carpets.mtl</file>
-        <file>Res/Carpets.obj</file>
-        <file>Res/Door.mtl</file>
-        <file>Res/Door.obj</file>
-        <file>Res/Door.png</file>
-        <file>Res/Picture.mtl</file>
-        <file>Res/Picture.obj</file>
-        <file>Res/Picture.png</file>
-        <file>Res/picture1.png</file>
-        <file>Res/picture2.png</file>
-        <file>Res/picture3.png</file>
-        <file>Res/Rooms.mtl</file>
-        <file>Res/Rooms.obj</file>
+        <file>Res/Corridor.obj</file>
         <file>Res/Room.obj</file>
+        <file>Res/room.png</file>
+        <file>Res/RoomAll.png</file>
+        <file>Res/table.obj</file>
+        <file>Res/table.png</file>
+        <file>Res/tablemetal.jpg</file>
+        <file>Res/tablemetal.obj</file>
     </qresource>
 </RCC>

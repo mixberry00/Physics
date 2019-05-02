@@ -21,6 +21,10 @@ MainWindow::MainWindow(QWidget *parent) :
     sceneEntityRoom = new Qt3DCore::QEntity();
     sceneWindow->setRootEntity(sceneEntity);
 
+    uprend = new QTimer();
+    uprend->setInterval(100);
+    connect(uprend, SIGNAL(timeout()), this, SLOT(Repaint()));
+
 
 
     /*Qt3DCore::QEntity *lightEntity = new Qt3DCore::QEntity(sceneEntity);
@@ -130,7 +134,6 @@ void MainWindow::mouseMove(QMouseEvent *me)
         camera->setUpVector(QVector3D(0, 1, 0));
         mouse_y = me->y();
         mouse_x = me->x();
-        qDebug() << camera->viewCenter();
     }
 
 
@@ -159,8 +162,8 @@ void MainWindow::mouseWheel(QWheelEvent *ev)
 
 void MainWindow::CreateEntity()
 {
-    objects.insert("Coridor", addObject(sceneEntity, ":/Res/CoridorB.obj", ":/Res/Coridor.png"));
-    objects.insert("Room", addObject(sceneEntityRoom, ":/Res/RoomB.obj", ":/Res/room.png"));
+    objects.insert("Coridor", addObject(sceneEntity, ":/Res/Corridor.obj", ":/Res/RoomAll.png"));
+    objects.insert("Room", addObject(sceneEntityRoom, ":/Res/Room.obj", ":/Res/room.png"));
 
 }
 
@@ -177,6 +180,15 @@ void MainWindow::Update()
     /*t->setRotation(QQuaternion::fromAxisAndAngle(QVector3D(0.0, 1.0, 0.0), angle));
     t1->setRotation(QQuaternion::fromAxisAndAngle(QVector3D(0.0, 1.0, 0.0), angle) * QQuaternion::fromAxisAndAngle(QVector3D(0.0, 0.0, 1.0), angle1));*/
 }
+
+
+void MainWindow::Repaint()
+{
+    camera->pan(1.0f);
+    camera->pan(-1.0f);
+    uprend->stop();
+}
+
 
 
 void MainWindow::on_room1_clicked()
@@ -232,8 +244,8 @@ void MainWindow::on_pushButton_clicked()
         camera->setFieldOfView(60.0f);
         camera->setPosition(QVector3D(0.0, 2.0, 0.0));
         camera->setUpVector(QVector3D(0, 1, 0));
-        camera->setViewCenter(QVector3D(0.0, 1.5, 5.0));
+        camera->setViewCenter(QVector3D(2.0, 1.5, 0.0));
         sceneWindow->setRootEntity(sceneEntityRoom);
-
+        uprend->start();
     }
 }

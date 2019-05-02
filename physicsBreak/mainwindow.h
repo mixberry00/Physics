@@ -30,6 +30,8 @@ public:
 private slots:
     void Update();
 
+    void Repaint();
+
     void on_room1_clicked();
 
     void on_room2_clicked();
@@ -68,7 +70,7 @@ private:
 
     class MouseEv *ev;
 
-    QTimer *timer;
+    QTimer *timer, *uprend;
 
 
     /*Qt3DCore::QTransform *t;
