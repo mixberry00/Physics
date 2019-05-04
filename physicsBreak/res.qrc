@@ -15,5 +15,10 @@
         <file>Res/table.png</file>
         <file>Res/tablemetal.jpg</file>
         <file>Res/tablemetal.obj</file>
+        <file>Res/RoomG.obj</file>
+        <file>Res/ceiling.jpg</file>
+        <file>Res/ceiling.obj</file>
+        <file>Res/RoomG.png</file>
+        <file>Res/RoomGN.obj</file>
     </qresource>
 </RCC>

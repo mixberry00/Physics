@@ -4,17 +4,10 @@
 const float coordR[]={15.0, 8.0, 5.5, 0.0, -2.0, -8.0, -10.0};
 const bool sideR[]={true, false, true, false, true, false, true};
 float st, kx, kz;
-bool flag = true;
-QTimer *timer2 = new QTimer();
+int steps = 0;
 
 void MainWindow::cameraMoveTo()
 {
-    if (flag)
-    {
-        timer2->setInterval(2);
-        connect(timer2, SIGNAL(timeout()), this, SLOT(moveToRoom()));
-        flag = false;
-    }
 
     float delta = camera->position().x() - coordR[curC];
     float fdeltz = camera->viewCenter().z() - 5.0f * (sideR[curC] ? 1.0f : -1.0f);
@@ -24,6 +17,7 @@ void MainWindow::cameraMoveTo()
     int stepR = int(delta / st);
 
     kz = fdeltz / float(stepR);
+
     kx = fdeltx / float(stepR);
     /*if (fdeltx < 0) kx = 0.05;
     else kx = -0.05;
@@ -40,7 +34,6 @@ void MainWindow::cameraMoveTo()
 
 void MainWindow::moveToRoom()
 {
-    static int steps = 0;
     ++steps;
     if (fabs(double(camera->position().x() - coordR[curC])) > 1e-1 && steps % 4 == 0)
     {

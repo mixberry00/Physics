@@ -53,7 +53,11 @@ MainWindow::MainWindow(QWidget *parent) :
     camera->lens()->setPerspectiveProjection(100.0f, 16.0f/9.0f, 0.1f, 1000.0f);
     camera->setPosition(QVector3D(20.0, 3.0, 0.0));
     camera->setUpVector(QVector3D(0, 1, 0));
-    camera->setViewCenter(QVector3D(0.0, 3.0, 0.0));
+    camera->setViewCenter(QVector3D(19.0, 3.0, 0.0));
+
+    timer2 = new QTimer();
+    timer2->setInterval(2);
+    connect(timer2, SIGNAL(timeout()), this, SLOT(moveToRoom()));
 
 
 //    timer = new QTimer();
@@ -108,62 +112,65 @@ void MainWindow::mousePress(QMouseEvent *me)
 
 void MainWindow::mouseMove(QMouseEvent *me)
 {
-    /*Qt::MouseButtons b = me->buttons();
-
-    if (b & Qt::LeftButton)
-    {
-        beta += -(mouse_y - me->y());
-        alpha += (mouse_x - me->x());
-        mouse_x = me->x();
-        mouse_y = me->y();
-
-        if (beta > 80) beta = 80;
-        if (beta < -80) beta = -80;
-        QVector3D pos(-cos(beta * 3.1415 / 360)*cos(alpha * 3.1415 / 360)*radius,
-                    sin(beta * 3.1415 / 360)*radius,
-                    cos(beta * 3.1415 / 360)*sin(alpha * 3.1415 / 360)*radius);
-        camera->setPosition(pos);
-    }*/
-
     Qt::MouseButtons b = me->buttons();
-
     if (b & Qt::LeftButton)
     {
-        camera->tilt((mouse_y - me->y()) * 0.1f);
-        camera->pan(-(mouse_x - me->x()) * 0.1f);
-        camera->setUpVector(QVector3D(0, 1, 0));
-        mouse_y = me->y();
-        mouse_x = me->x();
-    }
+        if (curC==-2)
+        {
+            beta += -(mouse_y - me->y());
+            alpha += (mouse_x - me->x());
+            mouse_x = me->x();
+            mouse_y = me->y();
 
+            if (beta > 80) beta = 80;
+            if (beta < -80) beta = -80;
+            QVector3D pos(-cos(beta * 3.1415 / 360)*cos(alpha * 3.1415 / 360)*radius,
+                        sin(beta * 3.1415 / 360)*radius,
+                        cos(beta * 3.1415 / 360)*sin(alpha * 3.1415 / 360)*radius);
+            camera->setPosition(pos);
+        }
+        else
+        {
+            camera->tilt((mouse_y - me->y()) * 0.1f);
+            camera->pan(-(mouse_x - me->x()) * 0.1f);
+            camera->setUpVector(QVector3D(0, 1, 0));
+            mouse_y = me->y();
+            mouse_x = me->x();
+        }
 
-
+   }
 }
 
 void MainWindow::mouseWheel(QWheelEvent *ev)
 {
+    if (curC == -2)
+    {
+        if (ev->delta() > 0)
+            radius -= 0.1;
+        else
+            radius += 0.1;
 
-    /*if (ev->delta() > 0)
-        radius -= 0.5;
-    else
-        radius += 0.5;
+        if (radius < 2)
+            radius = 2;
 
-    if (radius < 4)
-        radius = 4;
+        if (radius > 6)
+            radius = 6;
 
-    if (radius > 30)
-        radius = 30;
-
-    QVector3D pos(-cos(beta * 3.1415 / 360)*cos(alpha * 3.1415 / 360)*radius,
-                sin(beta * 3.1415 / 360)*radius,
-                cos(beta * 3.1415 / 360)*sin(alpha * 3.1415 / 360)*radius);
-    camera->setPosition(pos);*/
+        QVector3D pos(-cos(beta * 3.1415 / 360)*cos(alpha * 3.1415 / 360)*radius,
+                    sin(beta * 3.1415 / 360)*radius,
+                    cos(beta * 3.1415 / 360)*sin(alpha * 3.1415 / 360)*radius);
+        camera->setPosition(pos);
+    }
 }
 
 void MainWindow::CreateEntity()
 {
     objects.insert("Coridor", addObject(sceneEntity, ":/Res/Corridor.obj", ":/Res/Corridor.png"));
-    objects.insert("Room", addObject(sceneEntityRoom, ":/Res/Room.obj", ":/Res/room.png"));
+    objects.insert("ceil1", addObject(sceneEntity, ":/Res/ceiling.obj", ":/Res/ceiling.jpg"));
+
+    objects.insert("ceilR", addObject(sceneEntityRoom, ":/Res/ceiling.obj", ":/Res/ceiling.jpg"));
+    objects.insert("Room", addObject(sceneEntityRoom, ":/Res/RoomGN.obj", ":/Res/RoomG.png"));
+    objects.insert("tableRoom", addObject(sceneEntityRoom, ":/Res/tablemetal.obj", ":/Res/tablemetal.jpg"));
 
 }
 
@@ -193,44 +200,65 @@ void MainWindow::Repaint()
 
 void MainWindow::on_room1_clicked()
 {
-    curC = 0;
-    cameraMoveTo();
+    if (curC != -2)
+    {
+        curC = 0;
+        cameraMoveTo();
+    }
 }
 
 void MainWindow::on_room2_clicked()
 {
-     curC = 1;
-     cameraMoveTo();
+    if (curC != -2)
+    {
+        curC = 1;
+        cameraMoveTo();
+    }
 }
 
 void MainWindow::on_room3_clicked()
 {
-     curC = 2;
-     cameraMoveTo();
+    if (curC != -2)
+    {
+        curC = 2;
+        cameraMoveTo();
+    }
 }
 
 void MainWindow::on_room4_clicked()
 {
-     curC = 3;
-     cameraMoveTo();
+    if (curC != -2)
+    {
+        curC = 3;
+        cameraMoveTo();
+    }
 }
 
 void MainWindow::on_room5_clicked()
 {
-     curC = 4;
-     cameraMoveTo();
+    if (curC != -2)
+    {
+        curC = 4;
+        cameraMoveTo();
+    }
 }
 
 void MainWindow::on_room6_clicked()
 {
-     curC = 5;
-     cameraMoveTo();
+    if (curC != -2)
+    {
+        curC = 5;
+        cameraMoveTo();
+    }
 }
 
 void MainWindow::on_room7_clicked()
 {
-     curC = 6;
-     cameraMoveTo();
+    if (curC != -2)
+    {
+        curC = 6;
+        cameraMoveTo();
+    }
 }
 
 
@@ -238,14 +266,34 @@ void MainWindow::on_pushButton_clicked()
 {
     if (curC == -1)
         qDebug()<< "Error!";
+    else if (curC != -2)
+    {
+        camera->setFieldOfView(60.0f);
+        QVector3D pos(-cos(beta * 3.1415 / 360)*cos(alpha * 3.1415 / 360)*radius,
+                    sin(beta * 3.1415 / 360)*radius,
+                    cos(beta * 3.1415 / 360)*sin(alpha * 3.1415 / 360)*radius);
+        camera->setPosition(pos);
+        camera->setViewCenter(QVector3D(0.0, 0.0, 0.0));
+        sceneWindow->setRootEntity(sceneEntityRoom);
+        timer2->stop();
+
+
+
+
+
+
+        ui->pushButton->setText("Выход из комнаты");
+        curC = -2;
+        uprend->start();
+    }
     else
     {
-        camera = sceneWindow->camera();
-        camera->setFieldOfView(60.0f);
-        camera->setPosition(QVector3D(0.0, 2.0, 0.0));
-        camera->setUpVector(QVector3D(0, 1, 0));
-        camera->setViewCenter(QVector3D(2.0, 1.5, 0.0));
-        sceneWindow->setRootEntity(sceneEntityRoom);
+        sceneWindow->setRootEntity(sceneEntity);
+        camera->lens()->setPerspectiveProjection(100.0f, 16.0f/9.0f, 0.1f, 1000.0f);
+        camera->setPosition(QVector3D(20.0, 3.0, 0.0));
+        camera->setViewCenter(QVector3D(19.0, 3.0, 0.0));
+        ui->pushButton->setText("Перейти в комнату");
+        curC = -1;
         uprend->start();
     }
 }

@@ -63,14 +63,14 @@ private:
 
     int mouse_x, mouse_y;
     double alpha = 0, beta = 0;
-    float radius = 11;
+    float radius = 5.0f;
     float angle = 0;
     float angle1 = 0;
     int curC = -1;
 
     class MouseEv *ev;
 
-    QTimer *timer, *uprend;
+    QTimer *timer, *uprend, *timer2;
 
 
     /*Qt3DCore::QTransform *t;
