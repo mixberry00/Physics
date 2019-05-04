@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 
 
-const float coordR[]={-8.0, -5.0, 0.0, 3.0, 8.0, 11.0, 17.0};
+const float coordR[]={15.0, 8.0, 5.5, 0.0, -2.0, -8.0, -10.0};
 const bool sideR[]={true, false, true, false, true, false, true};
 float st, kx, kz;
 bool flag = true;
