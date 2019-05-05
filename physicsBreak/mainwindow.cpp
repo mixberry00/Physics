@@ -15,8 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
     sceneWindow->defaultFrameGraph()->setClearColor(QColor(QRgb(0x888888)));
     sceneWindow->installEventFilter(ev);
 
-    scene = QWidget::createWindowContainer(sceneWindow, ui->w);
-    scene->setGeometry(ui->w->geometry());
+    scene = QWidget::createWindowContainer(sceneWindow, ui->dvid);
+    scene->setGeometry(ui->dvid->geometry());
     sceneEntity = new Qt3DCore::QEntity();
     sceneEntityRoom = new Qt3DCore::QEntity();
     sceneWindow->setRootEntity(sceneEntity);
@@ -65,6 +65,11 @@ MainWindow::MainWindow(QWidget *parent) :
 //    connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
     //timer->start();
 
+    hwind = new help();
+    hwind->setAttribute(Qt::WA_ShowModal);
+
+
+
     CreateEntity();
 }
 
@@ -100,8 +105,7 @@ Qt3DRender::QCamera * MainWindow::getCamera()
 
 void MainWindow::resizeEvent(QResizeEvent *ev)
 {
-    ui->w->setGeometry(0, 0, width() * 0.75, height());
-    scene->setGeometry(ui->w->geometry());
+    scene->setGeometry(ui->dvid->geometry());
 }
 
 void MainWindow::mousePress(QMouseEvent *me)
@@ -200,65 +204,52 @@ void MainWindow::Repaint()
 
 void MainWindow::on_room1_clicked()
 {
-    if (curC != -2)
-    {
-        curC = 0;
-        cameraMoveTo();
-    }
+
+    curC = 0;
+    cameraMoveTo();
 }
 
 void MainWindow::on_room2_clicked()
 {
-    if (curC != -2)
-    {
-        curC = 1;
-        cameraMoveTo();
-    }
+
+    curC = 1;
+    cameraMoveTo();
 }
 
 void MainWindow::on_room3_clicked()
 {
-    if (curC != -2)
-    {
-        curC = 2;
-        cameraMoveTo();
-    }
+
+    curC = 2;
+    cameraMoveTo();
 }
 
 void MainWindow::on_room4_clicked()
 {
-    if (curC != -2)
-    {
-        curC = 3;
-        cameraMoveTo();
-    }
+
+    curC = 3;
+    cameraMoveTo();
 }
 
 void MainWindow::on_room5_clicked()
 {
-    if (curC != -2)
-    {
-        curC = 4;
-        cameraMoveTo();
-    }
+
+    curC = 4;
+    cameraMoveTo();
 }
 
 void MainWindow::on_room6_clicked()
 {
-    if (curC != -2)
-    {
-        curC = 5;
-        cameraMoveTo();
-    }
+
+    curC = 5;
+    cameraMoveTo();
 }
 
 void MainWindow::on_room7_clicked()
 {
-    if (curC != -2)
-    {
-        curC = 6;
-        cameraMoveTo();
-    }
+
+    curC = 6;
+    cameraMoveTo();
+
 }
 
 
@@ -282,7 +273,10 @@ void MainWindow::on_pushButton_clicked()
 
 
 
+
         ui->pushButton->setText("Выход из комнаты");
+        ui->numbers->setHidden(true);
+
         curC = -2;
         uprend->start();
     }
@@ -292,8 +286,14 @@ void MainWindow::on_pushButton_clicked()
         camera->lens()->setPerspectiveProjection(100.0f, 16.0f/9.0f, 0.1f, 1000.0f);
         camera->setPosition(QVector3D(20.0, 3.0, 0.0));
         camera->setViewCenter(QVector3D(19.0, 3.0, 0.0));
-        ui->pushButton->setText("Перейти в комнату");
+        ui->numbers->setVisible(true);
         curC = -1;
         uprend->start();
     }
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    hwind->updspr(1);
+    hwind->show();
 }

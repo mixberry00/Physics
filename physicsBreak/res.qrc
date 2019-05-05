@@ -20,5 +20,6 @@
         <file>Res/ceiling.obj</file>
         <file>Res/RoomG.png</file>
         <file>Res/RoomGN.obj</file>
+        <file>Res/spravki/1.jpg</file>
     </qresource>
 </RCC>

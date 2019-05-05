@@ -5,6 +5,7 @@
 #include <Qt3DExtras>
 #include <Qt3DRender>
 #include <Qt3DCore>
+#include "help.h"
 
 namespace Ui {
 class MainWindow;
@@ -50,6 +51,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     QWidget *scene;
@@ -69,6 +72,8 @@ private:
     int curC = -1;
 
     class MouseEv *ev;
+
+    help *hwind;
 
     QTimer *timer, *uprend, *timer2;
 

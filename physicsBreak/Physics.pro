@@ -30,13 +30,17 @@ QMAKE_CXXFLAGS_RELEASE -= -O2
 SOURCES += \
         main.cpp \
     mainwindow.cpp \
-    movecamerainroom.cpp
+    movecamerainroom.cpp \
+    help.cpp \
+    s1.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    help.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    help.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

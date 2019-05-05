@@ -14,186 +14,239 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="1">
-     <widget class="QWidget" name="widget" native="true">
-      <property name="minimumSize">
-       <size>
-        <width>300</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>300</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <widget class="QWidget" name="gridLayoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>40</y>
-         <width>293</width>
-         <height>421</height>
-        </rect>
-       </property>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="1" column="2">
-         <widget class="QPushButton" name="room6">
-          <property name="minimumSize">
-           <size>
-            <width>93</width>
-            <height>130</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>93</width>
-            <height>130</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-image: url(:/Res/6.jpg);</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QPushButton" name="room1">
-          <property name="minimumSize">
-           <size>
-            <width>93</width>
-            <height>130</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>93</width>
-            <height>130</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-image: url(:/Res/1.jpg);</string>
-          </property>
-          <property name="autoDefault">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QPushButton" name="room2">
-          <property name="minimumSize">
-           <size>
-            <width>93</width>
-            <height>130</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>93</width>
-            <height>130</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-image: url(:/Res/2.jpg);</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QPushButton" name="room4">
-          <property name="minimumSize">
-           <size>
-            <width>93</width>
-            <height>130</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>93</width>
-            <height>130</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-image: url(:/Res/4.jpg);</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QPushButton" name="room3">
-          <property name="minimumSize">
-           <size>
-            <width>93</width>
-            <height>130</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>93</width>
-            <height>130</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-image: url(:/Res/3.jpg);</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="room5">
-          <property name="minimumSize">
-           <size>
-            <width>93</width>
-            <height>130</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>93</width>
-            <height>130</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-image: url(:/Res/5.jpg);</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QPushButton" name="room7">
-          <property name="minimumSize">
-           <size>
-            <width>93</width>
-            <height>130</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>93</width>
-            <height>130</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-image: url(:/Res/7.jpg);</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QPushButton" name="pushButton">
-       <property name="geometry">
-        <rect>
-         <x>60</x>
-         <y>660</y>
-         <width>171</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Перейти в комнату</string>
-       </property>
-      </widget>
-     </widget>
-    </item>
+   <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QWidget" name="w" native="true"/>
+     <widget class="QWidget" name="w" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>1</number>
+       </property>
+       <property name="leftMargin">
+        <number>1</number>
+       </property>
+       <property name="topMargin">
+        <number>1</number>
+       </property>
+       <property name="rightMargin">
+        <number>1</number>
+       </property>
+       <property name="bottomMargin">
+        <number>1</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="dvid" native="true"/>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>5</width>
+           <height>5</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QWidget" name="control" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QWidget" name="numbers" native="true">
+            <layout class="QGridLayout" name="gridLayout_2">
+             <item row="1" column="4">
+              <widget class="QPushButton" name="room3">
+               <property name="minimumSize">
+                <size>
+                 <width>93</width>
+                 <height>130</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>93</width>
+                 <height>130</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-image: url(:/Res/3.jpg);</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QPushButton" name="room4">
+               <property name="minimumSize">
+                <size>
+                 <width>93</width>
+                 <height>130</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>93</width>
+                 <height>130</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-image: url(:/Res/4.jpg);</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2">
+              <widget class="QPushButton" name="room5">
+               <property name="minimumSize">
+                <size>
+                 <width>93</width>
+                 <height>130</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>93</width>
+                 <height>130</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-image: url(:/Res/5.jpg);</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QPushButton" name="room2">
+               <property name="minimumSize">
+                <size>
+                 <width>93</width>
+                 <height>130</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>93</width>
+                 <height>130</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-image: url(:/Res/2.jpg);</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="4">
+              <widget class="QPushButton" name="room6">
+               <property name="minimumSize">
+                <size>
+                 <width>93</width>
+                 <height>130</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>93</width>
+                 <height>130</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-image: url(:/Res/6.jpg);</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QPushButton" name="room1">
+               <property name="minimumSize">
+                <size>
+                 <width>93</width>
+                 <height>130</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>93</width>
+                 <height>130</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-image: url(:/Res/1.jpg);</string>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="2">
+              <widget class="QPushButton" name="room7">
+               <property name="minimumSize">
+                <size>
+                 <width>93</width>
+                 <height>130</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>93</width>
+                 <height>130</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-image: url(:/Res/7.jpg);</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="minimumSize">
+             <size>
+              <width>282</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Справка</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton">
+            <property name="text">
+             <string>Перейти в комнату</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </item>
    </layout>
   </widget>
