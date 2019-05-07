@@ -35,7 +35,7 @@ private:
     Ui::help *ui;
 };
 
-QVBoxLayout *s1Rect();
+QVBoxLayout *sRect();
 
 
 

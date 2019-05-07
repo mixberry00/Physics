@@ -32,11 +32,13 @@ SOURCES += \
     mainwindow.cpp \
     movecamerainroom.cpp \
     help.cpp \
-    s1.cpp
+    sup.cpp \
+    models.cpp
 
 HEADERS += \
     mainwindow.h \
-    help.h
+    help.h \
+    models.h
 
 FORMS += \
         mainwindow.ui \
@@ -48,4 +50,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    res.qrc
+    resq.qrc

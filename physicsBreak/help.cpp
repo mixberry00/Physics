@@ -15,7 +15,7 @@ help::~help()
 
 void help::updspr(int c)
 {    
-    QVBoxLayout *l = s1Rect();
+    QVBoxLayout *l = sRect();
 
 
     l->addStretch();

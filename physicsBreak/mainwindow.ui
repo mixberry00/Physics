@@ -223,10 +223,17 @@
            </spacer>
           </item>
           <item>
+           <widget class="QPushButton" name="startBut">
+            <property name="text">
+             <string>Запуск матника</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="pushButton_2">
             <property name="minimumSize">
              <size>
-              <width>282</width>
+              <width>0</width>
               <height>0</height>
              </size>
             </property>

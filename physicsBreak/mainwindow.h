@@ -5,7 +5,9 @@
 #include <Qt3DExtras>
 #include <Qt3DRender>
 #include <Qt3DCore>
+#include <functional>
 #include "help.h"
+#include "models.h"
 
 namespace Ui {
 class MainWindow;
@@ -20,13 +22,14 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void initModels();
     void resizeEvent(QResizeEvent *) override;
     void mouseMove(QMouseEvent *);
     void mousePress(QMouseEvent *);
     void mouseWheel(QWheelEvent *);
     Qt3DRender::QCamera *getCamera();
-    Qt3DCore::QEntity *addObject(Qt3DCore::QEntity *, QString, QString);
     void CreateEntity();
+
 
 private slots:
     void Update();
@@ -53,6 +56,8 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_startBut_clicked();
+
 private:
     Ui::MainWindow *ui;
     QWidget *scene;
@@ -65,7 +70,7 @@ private:
     Qt3DRender::QDirectionalLight *light;
 
     int mouse_x, mouse_y;
-    double alpha = 0, beta = 0;
+    double alpha = 180.0, beta = 0.0;
     float radius = 5.0f;
     float angle = 0;
     float angle1 = 0;
@@ -77,14 +82,14 @@ private:
 
     QTimer *timer, *uprend, *timer2;
 
+    std::function <void(double)> mainF;
 
-    /*Qt3DCore::QTransform *t;
-    Qt3DCore::QTransform *t1;*/
-    QMap <QString, Qt3DCore::QEntity *> objects;
+
+
 
     void cameraMoveTo();
 
-
+    Model1 *m1;
 
 };
 
@@ -121,6 +126,9 @@ protected:
         }
     }
 };
+
+
+
 
 
 #endif

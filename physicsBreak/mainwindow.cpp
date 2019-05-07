@@ -25,25 +25,29 @@ MainWindow::MainWindow(QWidget *parent) :
     uprend->setInterval(100);
     connect(uprend, SIGNAL(timeout()), this, SLOT(Repaint()));
 
+
+
+    /*Qt3DCore::QEntity *lightEntity = new Qt3DCore::QEntity(sceneEntity);
+    Qt3DRender::QSpotLight *light = new Qt3DRender::QSpotLight(lightEntity);
+    light->setColor("white");
+    light->setIntensity(1);
+    light->setCutOffAngle(120);
+    light->setLocalDirection(QVector3D(0.0, -1.0, 0.0));
+    light->setLinearAttenuation(0.1);
+    lightEntity->addComponent(light);
+    Qt3DCore::QTransform *lightTransform = new Qt3DCore::QTransform(lightEntity);
+    lightTransform->setTranslation(QVector3D(0.0, 1.0, 0.0));
+    lightEntity->addComponent(lightTransform);*/
+
     Qt3DCore::QEntity *lightEntity = new Qt3DCore::QEntity(sceneEntity);
     Qt3DRender::QPointLight *light = new Qt3DRender::QPointLight(lightEntity);
     light->setColor("white");
-    light->setIntensity(0.1);
-    light->setConstantAttenuation(1);
+    light->setIntensity(0.6);
+    light->setLinearAttenuation(0.1);
     lightEntity->addComponent(light);
-    Qt3DCore::QTransform *lightT = new Qt3DCore::QTransform();
-    lightT->setTranslation(QVector3D(12.0, 1.0, 0.0));
-    lightEntity->addComponent(lightT);
-
-    Qt3DCore::QEntity *lightEntity1 = new Qt3DCore::QEntity(sceneEntityRoom);
-    Qt3DRender::QSpotLight *light1 = new Qt3DRender::QSpotLight(lightEntity1);
-    light1->setColor("white");
-    light1->setIntensity(1.0);
-    light1->setLocalDirection(QVector3D(0.0, 1.0, 0.0));
-    lightEntity1->addComponent(light1);
-    Qt3DCore::QTransform *lightT1 = new Qt3DCore::QTransform();
-    lightT1->setTranslation(QVector3D(0.0, 100.0, 0.0));
-    lightEntity1->addComponent(lightT1);
+    Qt3DCore::QTransform *lightTransform = new Qt3DCore::QTransform(lightEntity);
+    lightTransform->setTranslation(QVector3D(10.0, 10.0, 0.0));
+    lightEntity->addComponent(lightTransform);
 
     camera = sceneWindow->camera();
     camera->lens()->setPerspectiveProjection(100.0f, 16.0f/9.0f, 0.1f, 1000.0f);
@@ -55,10 +59,19 @@ MainWindow::MainWindow(QWidget *parent) :
     timer2->setInterval(2);
     connect(timer2, SIGNAL(timeout()), this, SLOT(moveToRoom()));
 
+
+    timer = new QTimer();
+    timer->setInterval(10);
+    connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
+
     hwind = new help();
     hwind->setAttribute(Qt::WA_ShowModal);
 
+    ui->startBut->setHidden(true);
+
     CreateEntity();
+    initModels();
+
 }
 
 MainWindow::~MainWindow()
@@ -66,24 +79,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-Qt3DCore::QEntity *MainWindow::addObject(Qt3DCore::QEntity *entity, QString obj, QString texture)
+
+void MainWindow::initModels()
 {
-      Qt3DCore::QEntity *mesh = new Qt3DCore::QEntity(entity);
-      Qt3DRender::QMesh *objMesh = new Qt3DRender::QMesh(mesh);
-      objMesh->setSource(QUrl::fromLocalFile(obj));
-
-      Qt3DRender::QTextureLoader *tLoader = new Qt3DRender::QTextureLoader(mesh);
-      tLoader->setSource(QUrl::fromLocalFile(texture));
-
-      Qt3DExtras::QDiffuseSpecularMapMaterial *Mat = new Qt3DExtras::QDiffuseSpecularMapMaterial();
-      Mat->setDiffuse(tLoader);
-      Mat->setShininess(8.2f);
-      Mat->setAmbient(QColor::fromRgb(200, 190, 200));
-      Mat->setSpecular(tLoader);
-      mesh->addComponent(objMesh);
-      mesh->addComponent(Mat);
-      return mesh;
+    m1 = new Model1();
 }
+
 
 Qt3DRender::QCamera * MainWindow::getCamera()
 {
@@ -114,6 +115,8 @@ void MainWindow::mouseMove(QMouseEvent *me)
             mouse_x = me->x();
             mouse_y = me->y();
 
+/*TODO REMAKE GRAD TO RAD*/
+
             if (beta > 80) beta = 80;
             if (beta < -80) beta = -80;
             QVector3D pos(-cos(beta * 3.1415 / 360)*cos(alpha * 3.1415 / 360)*radius,
@@ -129,7 +132,6 @@ void MainWindow::mouseMove(QMouseEvent *me)
             mouse_y = me->y();
             mouse_x = me->x();
         }
-
    }
 }
 
@@ -157,27 +159,13 @@ void MainWindow::mouseWheel(QWheelEvent *ev)
 
 void MainWindow::CreateEntity()
 {
-    objects.insert("Coridor", addObject(sceneEntity, ":/Res/Corridor.obj", ":/Res/Corridor.png"));
-    objects.insert("ceil1", addObject(sceneEntity, ":/Res/ceiling.obj", ":/Res/ceiling.jpg"));
-
-    objects.insert("ceilR", addObject(sceneEntityRoom, ":/Res/ceiling.obj", ":/Res/ceiling.jpg"));
-    objects.insert("Room", addObject(sceneEntityRoom, ":/Res/RoomGN.obj", ":/Res/RoomG.png"));
-    objects.insert("tableRoom", addObject(sceneEntityRoom, ":/Res/tablemetal.obj", ":/Res/tablemetal.jpg"));
-
+    addObject(sceneEntity, ":/Res/Corridor.obj", ":/Res/Corridor.png");
+    addObject(sceneEntity, ":/Res/ceiling.obj", ":/Res/ceiling.jpg");
 }
 
 void MainWindow::Update()
 {
-//    auto Q = camera->position();
-//    Q.setX(Q.x() + 0.05);
-//    qDebug()<<Q.x();
-//    camera->setPosition(Q);
-//     Q.setX(Q.x() + 10);
-//    camera->setViewCenter(Q);
-    /*angle += 0.1;
-    angle1 += 5;*/
-    /*t->setRotation(QQuaternion::fromAxisAndAngle(QVector3D(0.0, 1.0, 0.0), angle));
-    t1->setRotation(QQuaternion::fromAxisAndAngle(QVector3D(0.0, 1.0, 0.0), angle) * QQuaternion::fromAxisAndAngle(QVector3D(0.0, 0.0, 1.0), angle1));*/
+    mainF(0.005);
 }
 
 
@@ -247,23 +235,25 @@ void MainWindow::on_pushButton_clicked()
         qDebug()<< "Error!";
     else if (curC != -2)
     {
+        beta = 0.0;
+        alpha = 180.0;
         camera->setFieldOfView(60.0f);
         QVector3D pos(-cos(beta * 3.1415 / 360)*cos(alpha * 3.1415 / 360)*radius,
                     sin(beta * 3.1415 / 360)*radius,
                     cos(beta * 3.1415 / 360)*sin(alpha * 3.1415 / 360)*radius);
         camera->setPosition(pos);
         camera->setViewCenter(QVector3D(0.0, 0.0, 0.0));
-        sceneWindow->setRootEntity(sceneEntityRoom);
+
+        sceneWindow->setRootEntity(m1->GetEntity());
+        mainF = [this](double k)->void {return m1->Update(k);};
+
         timer2->stop();
-
-
-
-
 
 
 
         ui->pushButton->setText("Выход из комнаты");
         ui->numbers->setHidden(true);
+        ui->startBut->setVisible(true);
 
         curC = -2;
         uprend->start();
@@ -271,11 +261,14 @@ void MainWindow::on_pushButton_clicked()
     else
     {
         sceneWindow->setRootEntity(sceneEntity);
-        camera->lens()->setPerspectiveProjection(100.0f, 16.0f/9.0f, 0.1f, 1000.0f);
+        camera->setFieldOfView(100.0f);
         camera->setPosition(QVector3D(20.0, 3.0, 0.0));
         camera->setViewCenter(QVector3D(19.0, 3.0, 0.0));
         ui->numbers->setVisible(true);
         curC = -1;
+        ui->pushButton->setText("Перейти в комнату");
+        ui->startBut->setVisible(false);
+        timer->stop();
         uprend->start();
     }
 }
@@ -284,4 +277,13 @@ void MainWindow::on_pushButton_2_clicked()
 {
     hwind->updspr(1);
     hwind->show();
+}
+
+
+
+void MainWindow::on_startBut_clicked()
+{
+    //sections//
+    m1->Init(10., 0.02, 3., 2.);
+    timer->start();
 }
