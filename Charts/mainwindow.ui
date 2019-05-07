@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>502</width>
-    <height>214</height>
+    <height>223</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,21 +25,16 @@
     </property>
     <item>
      <property name="text">
-      <string>время - энергия</string>
+      <string>phi - theta</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>время - расстояние</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>время - скорость</string>
+      <string>time - psi</string>
      </property>
     </item>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="Draw">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -50,6 +45,325 @@
     </property>
     <property name="text">
      <string>Draw</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="length">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>160</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>5</number>
+    </property>
+    <property name="maximum">
+     <number>15</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>50</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Length</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="mass">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>80</y>
+      <width>160</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>20</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>80</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Mass</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="radius">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>110</y>
+      <width>160</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>4</number>
+    </property>
+    <property name="maximum">
+     <number>8</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>110</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Radius</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="psi_dot">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>160</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>50</number>
+    </property>
+    <property name="maximum">
+     <number>200</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>140</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Psi_dot</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="phi_dot">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>170</y>
+      <width>160</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>30</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>170</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Phi_dot</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="theta">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>200</y>
+      <width>160</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>785</number>
+    </property>
+    <property name="maximum">
+     <number>1570</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>200</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Theta</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="start">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>60</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stop">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>110</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Stop</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="length_value">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>50</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="mass_value">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>80</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="radius_value">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>110</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Psi_dot_value">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>140</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="phi_dot_value">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>170</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="theta_value">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>200</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="mintheta">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>190</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="maxtheta">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>160</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
     </property>
    </widget>
   </widget>

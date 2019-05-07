@@ -22,10 +22,14 @@ void Plot::resizeEvent(QResizeEvent *re)
     ui->PlotSurface->setGeometry(0, 0, re->size().width(), re->size().height() * 0.75);
 }
 
-void Plot::closeEvent(QCloseEvent *)
+void Plot::closeEvent(QCloseEvent *ce)
 {
-    delete ui;
+    args.clear();
+    values.clear();
+    plot->removeGraph(0);
     parent->DeletePlot(this);
+    delete plot;
+    delete ui;
 }
 
 void Plot::Update()
@@ -36,7 +40,7 @@ void Plot::Update()
     args.append(arg);
     values.append(value);
 
-    if (args.size() >= 5000)
+    if (args.size() >= 2500)
     {
         args.removeAt(0);
         values.removeAt(0);
@@ -47,8 +51,15 @@ void Plot::Update()
 
 void Plot::Draw(QVector<double> args, QVector<double> values)
 {
-    plot->graph(0)->setData(args, values);
-    plot->xAxis->setRange(args.last() - 5, args.last() + 1);
+    plot->graph(0)->setData(args, values, true);
+    plot->xAxis->setRange(args.last() - 18, args.last() + 2);
     plot->replot();
 }
 
+void Plot::Restart()
+{
+    args.clear();
+    values.clear();
+    plot->xAxis->setRange(-18, 2);
+    plot->replot();
+}

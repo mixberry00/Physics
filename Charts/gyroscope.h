@@ -3,23 +3,47 @@
 
 #include <QtCore>
 
+const double g = 9.81;
+
 class Gyroscope
 {
 public:
-    Gyroscope();
+    Gyroscope(double mass, double radius, double length, double psi_dot, double phi_dot, double theta);
 
-    double GetArg() { return arg; }
-    double GetValue1() { return value1; }
-    double GetValue2() { return value2; }
-    double GetValue3() { return value3; }
+    void Update(double dt);
 
-    void Update();
+    double GetPsi() { return psi; }
+    double GetPhi() { return phi; }
+    double GetTheta() { return theta; }
+    double GetTime() { return time; }
+
+    void SetMass(double mass);
+    void SetRadius(double radius);
+    void SetLength(double length);
+    void SetTheta(double theta);
+    void SetPsiDot(double psi_dot);
+    void SetPhiDot(double phi_dot);
+    void SetPhi(double phi);
+    void SetPsi(double psi);
+    void SetThetaDot(double theta_dot);
 
 private:
-    double arg;
-    double value1;
-    double value2;
-    double value3;
+    double I_psi, I0;
+    double mass, radius, length;
+    double psi, psi_dot;
+    double phi, phi_dot;
+    double theta, theta_dot;
+    double L_psi, L_phi;
+    double time;
+
+    void CalculateConstants();
+    void CalculateValues(double dt);
+    void Transform();
+
+    double dy1(double arg);
+    double dy2(double arg);
+    double dy3(double arg);
+    double dy4(double arg);
 };
 
-#endif // GYROSCOPE_H
+#endif

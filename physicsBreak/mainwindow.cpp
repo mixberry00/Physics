@@ -25,29 +25,25 @@ MainWindow::MainWindow(QWidget *parent) :
     uprend->setInterval(100);
     connect(uprend, SIGNAL(timeout()), this, SLOT(Repaint()));
 
-
-
-    /*Qt3DCore::QEntity *lightEntity = new Qt3DCore::QEntity(sceneEntity);
-    Qt3DRender::QSpotLight *light = new Qt3DRender::QSpotLight(lightEntity);
-    light->setColor("white");
-    light->setIntensity(1);
-    light->setCutOffAngle(120);
-    light->setLocalDirection(QVector3D(0.0, -1.0, 0.0));
-    light->setLinearAttenuation(0.1);
-    lightEntity->addComponent(light);
-    Qt3DCore::QTransform *lightTransform = new Qt3DCore::QTransform(lightEntity);
-    lightTransform->setTranslation(QVector3D(0.0, 1.0, 0.0));
-    lightEntity->addComponent(lightTransform);*/
-
     Qt3DCore::QEntity *lightEntity = new Qt3DCore::QEntity(sceneEntity);
     Qt3DRender::QPointLight *light = new Qt3DRender::QPointLight(lightEntity);
     light->setColor("white");
-    light->setIntensity(0.6);
-    light->setLinearAttenuation(0.1);
+    light->setIntensity(0.1);
+    light->setConstantAttenuation(1);
     lightEntity->addComponent(light);
-    Qt3DCore::QTransform *lightTransform = new Qt3DCore::QTransform(lightEntity);
-    lightTransform->setTranslation(QVector3D(10.0, 10.0, 0.0));
-    lightEntity->addComponent(lightTransform);
+    Qt3DCore::QTransform *lightT = new Qt3DCore::QTransform();
+    lightT->setTranslation(QVector3D(12.0, 1.0, 0.0));
+    lightEntity->addComponent(lightT);
+
+    Qt3DCore::QEntity *lightEntity1 = new Qt3DCore::QEntity(sceneEntityRoom);
+    Qt3DRender::QSpotLight *light1 = new Qt3DRender::QSpotLight(lightEntity1);
+    light1->setColor("white");
+    light1->setIntensity(1.0);
+    light1->setLocalDirection(QVector3D(0.0, 1.0, 0.0));
+    lightEntity1->addComponent(light1);
+    Qt3DCore::QTransform *lightT1 = new Qt3DCore::QTransform();
+    lightT1->setTranslation(QVector3D(0.0, 100.0, 0.0));
+    lightEntity1->addComponent(lightT1);
 
     camera = sceneWindow->camera();
     camera->lens()->setPerspectiveProjection(100.0f, 16.0f/9.0f, 0.1f, 1000.0f);
@@ -59,16 +55,8 @@ MainWindow::MainWindow(QWidget *parent) :
     timer2->setInterval(2);
     connect(timer2, SIGNAL(timeout()), this, SLOT(moveToRoom()));
 
-
-//    timer = new QTimer();
-//    timer->setInterval(50);
-//    connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
-    //timer->start();
-
     hwind = new help();
     hwind->setAttribute(Qt::WA_ShowModal);
-
-
 
     CreateEntity();
 }
@@ -90,7 +78,7 @@ Qt3DCore::QEntity *MainWindow::addObject(Qt3DCore::QEntity *entity, QString obj,
       Qt3DExtras::QDiffuseSpecularMapMaterial *Mat = new Qt3DExtras::QDiffuseSpecularMapMaterial();
       Mat->setDiffuse(tLoader);
       Mat->setShininess(8.2f);
-      Mat->setAmbient(QColor::fromRgb(255, 255, 255));
+      Mat->setAmbient(QColor::fromRgb(200, 190, 200));
       Mat->setSpecular(tLoader);
       mesh->addComponent(objMesh);
       mesh->addComponent(Mat);

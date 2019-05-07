@@ -17,7 +17,8 @@ public:
 
     void resizeEvent(QResizeEvent *) override;
     void closeEvent(QCloseEvent *) override;
-    void Update();
+    void Update();  
+    void Restart();
 
 private:
     Ui::Plot *ui;
