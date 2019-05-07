@@ -16,7 +16,6 @@ Plot::Plot(std::function<double()> getarg, std::function<double()> getvalue, Mai
     plot->yAxis->setRange(-5, 5);
 }
 
-
 void Plot::resizeEvent(QResizeEvent *re)
 {
     ui->PlotSurface->setGeometry(0, 0, re->size().width(), re->size().height() * 0.75);
@@ -24,12 +23,10 @@ void Plot::resizeEvent(QResizeEvent *re)
 
 void Plot::closeEvent(QCloseEvent *ce)
 {
-    args.clear();
-    values.clear();
-    plot->removeGraph(0);
-    parent->DeletePlot(this);
     delete plot;
     delete ui;
+    parent->DeletePlot(this);
+    this->destroy()l
 }
 
 void Plot::Update()

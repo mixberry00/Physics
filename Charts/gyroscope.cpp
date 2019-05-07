@@ -20,6 +20,7 @@ Gyroscope::Gyroscope(double mass, double radius, double length, double psi_dot, 
 void Gyroscope::Update(double dt)
 {
     CalculateValues(dt);
+    Transform();
 }
 
 void Gyroscope::SetMass(double mass)
