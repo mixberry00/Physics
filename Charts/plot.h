@@ -32,6 +32,9 @@ private:
     QList<double> args;
     QList<double> values;
 
+    double minValue;
+    double maxValue;
+
     void Draw(QVector<double> args, QVector<double> values);
 };
 

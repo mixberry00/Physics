@@ -2,13 +2,16 @@
 #define GYROSCOPE_H
 
 #include <QtCore>
+#include <Qt3DExtras>
+#include <Qt3DRender>
+#include <Qt3DCore>
 
 const double g = 9.81;
 
 class Gyroscope
 {
 public:
-    Gyroscope(double mass, double radius, double length, double psi_dot, double phi_dot, double theta);
+    Gyroscope(class MainWindow *parent, double mass, double radius, double length, double psi_dot, double phi_dot, double theta);
 
     void Update(double dt);
 
@@ -40,10 +43,27 @@ private:
     void CalculateValues(double dt);
     void Transform();
 
+    void LoadModel();
+    void SetTransform();
+
     double dy1(double arg);
     double dy2(double arg);
     double dy3(double arg);
     double dy4(double arg);
+
+    class MainWindow *parent;
+    Qt3DCore::QEntity *disk;
+    Qt3DCore::QEntity *axis;
+    Qt3DCore::QEntity *stand;
+    Qt3DCore::QEntity *box;
+
+    Qt3DCore::QTransform *diskTransform;
+    Qt3DCore::QTransform *axisTransform;
+    Qt3DCore::QTransform *boxTransform;
+
+    QQuaternion rotation;
+    QQuaternion precession;
+    QQuaternion nutation;
 };
 
 #endif

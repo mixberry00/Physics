@@ -1,7 +1,9 @@
 #include "gyroscope.h"
+#include "mainwindow.h"
 
-Gyroscope::Gyroscope(double mass, double radius, double length, double psi_dot, double phi_dot, double theta)
+Gyroscope::Gyroscope(MainWindow *parent, double mass, double radius, double length, double psi_dot, double phi_dot, double theta)
 {
+    this->parent = parent;
     this->mass = mass;
     this->radius = radius;
     this->length = length;
@@ -15,6 +17,8 @@ Gyroscope::Gyroscope(double mass, double radius, double length, double psi_dot, 
     time = 0;
 
     CalculateConstants();
+    LoadModel();
+    SetTransform();
 }
 
 void Gyroscope::Update(double dt)
@@ -83,6 +87,7 @@ void Gyroscope::CalculateConstants()
     I0 = mass * length * length + I_psi * 0.5;
     L_psi = I_psi * (phi_dot * cos(theta) + psi_dot);
     L_phi = I0 * phi_dot * sin(theta) * sin(theta) + L_psi * cos(theta);
+
 }
 
 void Gyroscope::CalculateValues(double dt)
@@ -130,7 +135,32 @@ void Gyroscope::CalculateValues(double dt)
 
 void Gyroscope::Transform()
 {
+    rotation = QQuaternion::fromAxisAndAngle(QVector3D(0.0, 0.0, 1.0),  57 * psi);
+    precession = QQuaternion::fromAxisAndAngle(QVector3D(0.0, 1.0, 0.0), 57 * phi);
+    nutation = QQuaternion::fromAxisAndAngle(QVector3D(1.0, 0.0, 0.0), 57 *theta - 90);
 
+    diskTransform->setRotation(precession * nutation * rotation);
+    axisTransform->setRotation(precession * nutation);
+    boxTransform->setRotation(precession);
+}
+
+void Gyroscope::LoadModel()
+{
+    disk = parent->addObject(":/Res/disk.obj", ":/Res/DiskMat.png");
+    axis = parent->addObject(":/Res/axis.obj", ":/Res/AxisMat.png");
+    box = parent->addObject(":/Res/box.obj", ":/Res/boxMat.png");
+    stand = parent->addObject(":/Res/stand.obj", ":/Res/standMat.png");
+}
+
+void Gyroscope::SetTransform()
+{
+    diskTransform = new Qt3DCore::QTransform();
+    axisTransform = new Qt3DCore::QTransform();
+    boxTransform = new  Qt3DCore::QTransform();
+
+    disk->addComponent(diskTransform);
+    axis->addComponent(axisTransform);
+    box->addComponent(boxTransform);
 }
 
 double Gyroscope::dy1(double arg)

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>502</width>
-    <height>223</height>
+    <width>1200</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,10 +57,10 @@
      </rect>
     </property>
     <property name="minimum">
-     <number>5</number>
+     <number>15</number>
     </property>
     <property name="maximum">
-     <number>15</number>
+     <number>20</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
@@ -121,7 +121,7 @@
      </rect>
     </property>
     <property name="minimum">
-     <number>4</number>
+     <number>5</number>
     </property>
     <property name="maximum">
      <number>8</number>
@@ -153,10 +153,10 @@
      </rect>
     </property>
     <property name="minimum">
-     <number>50</number>
+     <number>500</number>
     </property>
     <property name="maximum">
-     <number>200</number>
+     <number>1000</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
@@ -183,6 +183,9 @@
       <width>160</width>
       <height>16</height>
      </rect>
+    </property>
+    <property name="minimum">
+     <number>-30</number>
     </property>
     <property name="maximum">
      <number>30</number>
@@ -217,6 +220,9 @@
      <number>785</number>
     </property>
     <property name="maximum">
+     <number>1570</number>
+    </property>
+    <property name="value">
      <number>1570</number>
     </property>
     <property name="orientation">
@@ -301,7 +307,7 @@
      <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QLabel" name="Psi_dot_value">
+   <widget class="QLabel" name="psi_dot_value">
     <property name="geometry">
      <rect>
       <x>230</x>
@@ -364,6 +370,16 @@
     </property>
     <property name="text">
      <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="scene" native="true">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>50</y>
+      <width>600</width>
+      <height>600</height>
+     </rect>
     </property>
    </widget>
   </widget>
