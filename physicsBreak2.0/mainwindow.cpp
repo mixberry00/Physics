@@ -309,7 +309,3 @@ void MainWindow::on_startBut_clicked()
     }
 }
 
-void MainWindow::on_createPlot_clicked()
-{
-    m1->CreatePlot(ui->plots->currentIndex());
-}

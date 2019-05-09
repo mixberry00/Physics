@@ -74,9 +74,7 @@ Model1::Model1()
     QPushButton *p1 = new QPushButton("Построить график перемещения");
     connect(p1, &QPushButton::clicked, [=]()
     {
-       /* pl = new Plot([=]()->double{return 5.0;},
-                            [=]()->double{return 3.2;}, nullptr);
-        pl->show();*/
+        this->CreatePlot(0);
     });
 
 
@@ -130,7 +128,7 @@ void Model1::CreatePlot(int plotID)
     {
         case 0:
             plot = new Plot([this]()->double{ return this->GetTime(); },
-                            [this]()->double{ return this->GetOmega(); });
+                            [this]()->double{ return this->GetAngle(); });
         break;
     }
 

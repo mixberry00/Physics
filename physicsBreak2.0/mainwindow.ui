@@ -226,25 +226,6 @@
            </spacer>
           </item>
           <item>
-           <widget class="QComboBox" name="plots">
-            <property name="editable">
-             <bool>false</bool>
-            </property>
-            <item>
-             <property name="text">
-              <string>Скорость - время</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="createPlot">
-            <property name="text">
-             <string>Нарисовать график</string>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QWidget" name="status" native="true"/>
           </item>
           <item>
