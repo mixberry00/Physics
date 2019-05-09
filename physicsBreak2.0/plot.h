@@ -13,16 +13,26 @@ class Plot : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit Plot(std::function<double()>, std::function<double()>, class MainWindow *parent, QWidget *p = nullptr);
+    enum class State
+    {
+        Active,
+        Closed
+    };
+
+    explicit Plot(std::function<double()>, std::function<double()>, QWidget *p = nullptr);
 
     void resizeEvent(QResizeEvent *) override;
     void closeEvent(QCloseEvent *) override;
     void Update();
     void Restart();
+    void Destroy();
+
+    State GetState() { return state; }
 
 private:
     Ui::Plot *ui;
-    class MainWindow *parent;
+
+    State state;
 
     std::function<double()> getarg;
     std::function<double()> getvalue;

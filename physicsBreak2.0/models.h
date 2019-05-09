@@ -24,13 +24,17 @@ private:
     QLabel *i1, *i2, *k1, *k2, *k3;
     QSlider *s1, *s2, *s3;
     Qt3DCore::QTransform *tr1;
-    Plot *pl;
+
+    QList<Plot *> plots;
+
 public:
     Model1();
     void Init();
     void Compute(double);
     void Transform();
     void Update(double);
+    void CreatePlot(int);
+    void DeletePlot(Plot *);
     double GetA();
     double GetBeta();
     double GetOmega();

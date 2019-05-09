@@ -82,18 +82,15 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
 void MainWindow::initModels()
 {
     m1 = new Model1();
 }
 
-
 Qt3DRender::QCamera * MainWindow::getCamera()
 {
     return camera;
 }
-
 
 void MainWindow::resizeEvent(QResizeEvent *ev)
 {
@@ -174,15 +171,12 @@ void MainWindow::Update()
                                                                         QLatin1Char('0')).arg(time % 100, 2, 10, QLatin1Char('0')));
 }
 
-
 void MainWindow::Repaint()
 {
     camera->pan(1.0f);
     camera->pan(-1.0f);
     uprend->stop();
 }
-
-
 
 void MainWindow::on_room1_clicked()
 {
@@ -233,7 +227,6 @@ void MainWindow::on_room7_clicked()
     cameraMoveTo();
 
 }
-
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -298,8 +291,6 @@ void MainWindow::on_pushButton_2_clicked()
     hwind->show();
 }
 
-
-
 void MainWindow::on_startBut_clicked()
 {
     //sections//
@@ -316,4 +307,9 @@ void MainWindow::on_startBut_clicked()
         timer->stop();
         ui->startBut->setText("Запуск маятника");
     }
+}
+
+void MainWindow::on_createPlot_clicked()
+{
+    m1->CreatePlot(ui->plots->currentIndex());
 }

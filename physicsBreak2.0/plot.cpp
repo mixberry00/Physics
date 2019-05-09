@@ -2,14 +2,16 @@
 #include "ui_plot.h"
 #include "mainwindow.h"
 
-Plot::Plot(std::function<double()> getarg, std::function<double()> getvalue, MainWindow *parent, QWidget *p) :
+Plot::Plot(std::function<double()> getarg, std::function<double()> getvalue, QWidget *p) :
     QMainWindow(p),
     ui(new Ui::Plot),
-    parent(parent),
     getarg(getarg),
     getvalue(getvalue)
 {
     ui->setupUi(this);
+
+    state = State::Active;
+
     plot = ui->PlotSurface;
 
     plot->addGraph();
@@ -22,6 +24,11 @@ void Plot::resizeEvent(QResizeEvent *re)
 }
 
 void Plot::closeEvent(QCloseEvent *ce)
+{
+    state = State::Closed;
+}
+
+void Plot::Destroy()
 {
     delete plot;
     delete ui;

@@ -1,4 +1,5 @@
 #include "models.h"
+#include "plot.h"
 
 Qt3DCore::QEntity *addObject(Qt3DCore::QEntity *entity, QString obj, QString texture)
 {
@@ -18,7 +19,6 @@ Qt3DCore::QEntity *addObject(Qt3DCore::QEntity *entity, QString obj, QString tex
       mesh->addComponent(Mat);
       return mesh;
 }
-
 
 Model1::Model1()
 {
@@ -93,6 +93,7 @@ void Model1::Init()
 {
     t = 0.;
 }
+
 void Model1::Compute(double dt)
 {
     t+=dt;
@@ -108,8 +109,36 @@ void Model1::Update(double dt)
 {
     Compute(dt);
     Transform();
-    //pl->Update();
+
+    for (auto plot : plots)
+        if (plot->GetState() == Plot::State::Active)
+            plot->Update();
+        else
+        {
+            plot->Destroy();
+            plots.removeOne(plot);
+        }
+
     i1->setText(QString("Угол отклонения: %1 рад/c").arg(angle));
+}
+
+void Model1::CreatePlot(int plotID)
+{
+    Plot *plot = nullptr;
+
+    switch (plotID)
+    {
+        case 0:
+            plot = new Plot([this]()->double{ return this->GetTime(); },
+                            [this]()->double{ return this->GetOmega(); });
+        break;
+    }
+
+    if (plot)
+    {
+        plot->show();
+        plots.append(plot);
+    }
 }
 
 Qt3DCore::QEntity *Model1::GetEntity()
