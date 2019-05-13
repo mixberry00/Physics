@@ -11,13 +11,22 @@ Gyroscope::Gyroscope(MainWindow *parent, double mass, double radius, double leng
     this->phi_dot = phi_dot;
     this->theta = theta;
 
-    theta_dot = 0.2;
+    theta_dot = 0;
     phi = 0;
     psi = 0;
     time = 0;
 
     CalculateConstants();
     LoadModel();
+
+    diskTransform = new Qt3DCore::QTransform();
+    axisTransform = new Qt3DCore::QTransform();
+    boxTransform = new  Qt3DCore::QTransform();
+
+    disk->addComponent(diskTransform);
+    axis->addComponent(axisTransform);
+    box->addComponent(boxTransform);
+
     SetTransform();
 }
 
@@ -37,24 +46,21 @@ void Gyroscope::SetRadius(double radius)
 {
     this->radius = radius;
     CalculateConstants();
-    diskTransform->setScale3D(QVector3D(10 * radius,  10 * radius, 1.0));
+    SetTransform();
 }
 
 void Gyroscope::SetLength(double length)
 {
     this->length = length;
     CalculateConstants();
-    diskTransform->setTranslation(QVector3D(0.0, 0.0, 10 * length - 2));
+    SetTransform();
 }
 
 void Gyroscope::SetTheta(double theta)
 {
     this->theta = theta;
     CalculateConstants();
-
-    nutation = QQuaternion::fromAxisAndAngle(QVector3D(1.0, 0.0, 0.0), 57 *theta - 90);
-    diskTransform->setRotation(nutation);
-    axisTransform->setRotation(nutation);
+    SetTransform();
 }
 
 void Gyroscope::SetPsiDot(double psi_dot)
@@ -138,13 +144,19 @@ void Gyroscope::CalculateValues(double dt)
 
 void Gyroscope::Transform()
 {
-    rotation = QQuaternion::fromAxisAndAngle(QVector3D(0.0, 0.0, 1.0),  57 * psi);
-    precession = QQuaternion::fromAxisAndAngle(QVector3D(0.0, 1.0, 0.0), 57 * phi);
-    nutation = QQuaternion::fromAxisAndAngle(QVector3D(1.0, 0.0, 0.0), 57 *theta - 90);
+    rotation = QQuaternion::fromAxisAndAngle(QVector3D(0.0, 0.0, 1.0),  radToDeg * psi);
+    precession = QQuaternion::fromAxisAndAngle(QVector3D(0.0, 1.0, 0.0), radToDeg * phi);
+    nutation = QQuaternion::fromAxisAndAngle(QVector3D(1.0, 0.0, 0.0), radToDeg * theta - 90);
 
     diskTransform->setRotation(precession * nutation * rotation);
     axisTransform->setRotation(precession * nutation);
     boxTransform->setRotation(precession);
+
+    diskPos = QVector3D(cos(pi / 2 - theta)*sin(phi)*(0.56 + 10 * length),
+               sin(pi / 2 - theta)*(0.56 + 10 * length),
+               cos(pi / 2 - theta)*cos(phi)*(0.56 + 10 * length));
+
+    diskTransform->setTranslation(diskPos);
 }
 
 void Gyroscope::LoadModel()
@@ -157,20 +169,16 @@ void Gyroscope::LoadModel()
 
 void Gyroscope::SetTransform()
 {
-    diskTransform = new Qt3DCore::QTransform();
-    axisTransform = new Qt3DCore::QTransform();
-    boxTransform = new  Qt3DCore::QTransform();
+    diskPos = QVector3D(cos(pi / 2 - theta)*sin(phi)*(0.56 + 10 * length),
+               sin(pi / 2 - theta)*(0.56 + 10 * length),
+               cos(pi / 2 - theta)*cos(phi)*(0.56 + 10 * length));
 
-    disk->addComponent(diskTransform);
-    axis->addComponent(axisTransform);
-    box->addComponent(boxTransform);
-
-    nutation = QQuaternion::fromAxisAndAngle(QVector3D(1.0, 0.0, 0.0), 57 *theta - 90);
-    diskTransform->setRotation(nutation);
-    axisTransform->setRotation(nutation);
+    nutation = QQuaternion::fromAxisAndAngle(QVector3D(1.0, 0.0, 0.0), 57.2957795131 * theta - 90);
+    diskTransform->setRotation(precession * nutation * rotation);
+    axisTransform->setRotation(precession * nutation);
 
     diskTransform->setScale3D(QVector3D(10 * radius,  10 * radius, 1.0));
-    diskTransform->setTranslation(QVector3D(0.0, 0.0, 10 * length - 2));
+    diskTransform->setTranslation(diskPos * length / 0.2);
 }
 
 double Gyroscope::dy1(double arg)

@@ -34,6 +34,7 @@ private:
 
     double minValue;
     double maxValue;
+    double maxArg;
 
     void Draw(QVector<double> args, QVector<double> values);
 };
