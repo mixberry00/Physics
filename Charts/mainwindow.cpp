@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     sceneWindow = new Qt3DExtras::Qt3DWindow();
     ev = new MouseEv(this);
 
-    sceneWindow->defaultFrameGraph()->setClearColor(QColor(QRgb(0x888888)));
+    sceneWindow->defaultFrameGraph()->setClearColor(QColor(QRgb(0x3c0b77)));
     sceneWindow->installEventFilter(ev);
 
     scene = QWidget::createWindowContainer(sceneWindow, ui->scene);
@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     camera = sceneWindow->camera();
     camera->lens()->setPerspectiveProjection(45.0, 16.0f/9.0f, 0.1f, 1000.0f);
-    camera->setPosition(QVector3D(10.0, 0.0, 0.0));
+    camera->setPosition(QVector3D(-radius, 0.0, 0.0));
     camera->setUpVector(QVector3D(0, 1, 0));
     camera->setViewCenter(QVector3D(0.0, 0.0, 0.0));
 
@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     minTheta = maxTheta = gyro->GetTheta();
     timer = new QTimer();
-    timer->setInterval(10);
+    timer->setInterval(16);
     connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
 
     elapsedTimer = new QElapsedTimer();
@@ -66,14 +66,14 @@ void MainWindow::mouseMove(QMouseEvent *me)
     if (b & Qt::LeftButton)
     {
 
-        beta += -(mouse_y - me->y());
-        alpha += (mouse_x - me->x());
+        beta -= (mouse_y - me->y());
+        alpha -= (mouse_x - me->x());
         mouse_x = me->x();
         mouse_y = me->y();
 
         if (beta > 80) beta = 80;
         if (beta < -80) beta = -80;
-        QVector3D pos(-cos(beta * 3.1415 / 180)*cos(alpha * 3.1415 / 180)*radius,
+        QVector3D pos(cos(beta * 3.1415 / 180)*cos(alpha * 3.1415 / 180)*radius,
                       sin(beta * 3.1415 / 180)*radius,
                       cos(beta * 3.1415 / 180)*sin(alpha * 3.1415 / 180)*radius);
         camera->setPosition(pos);
@@ -83,17 +83,17 @@ void MainWindow::mouseMove(QMouseEvent *me)
 void MainWindow::mouseWheel(QWheelEvent *ev)
 {
     if (ev->delta() > 0)
-        radius -= 0.1;
+        radius -= 0.3;
     else
-        radius += 0.1;
+        radius += 0.3;
 
     if (radius < 2)
         radius = 2;
 
-    if (radius > 10)
-        radius = 10;
+    if (radius > 20)
+        radius = 20;
 
-        QVector3D pos(-cos(beta * 3.1415 / 180)*cos(alpha * 3.1415 / 180)*radius,
+        QVector3D pos(cos(beta * 3.1415 / 180)*cos(alpha * 3.1415 / 180)*radius,
                     sin(beta * 3.1415 / 180)*radius,
                     cos(beta * 3.1415 / 180)*sin(alpha * 3.1415 / 180)*radius);
 
@@ -135,9 +135,9 @@ void MainWindow::Update()
     double dt = elapsedTimer->elapsed() * 0.001;
 
     int i = 0;
-    while (i * 0.00001 < dt)
+    while (i * 0.0001 < dt / 4)
     {
-        gyro->Update(0.00001);
+        gyro->Update(0.0001);
         i++;
     }
 
@@ -146,14 +146,8 @@ void MainWindow::Update()
 
     elapsedTimer->restart();
 
-    if (gyro->GetTheta() < minTheta)
-        minTheta = gyro->GetTheta();
-
-    if (gyro->GetTheta() > maxTheta)
-        maxTheta = gyro->GetTheta();
-
-    ui->mintheta->setNum(minTheta);
-    ui->maxtheta->setNum(maxTheta);
+    ui->mintheta->setNum(i);
+    ui->maxtheta->setNum(dt);
 }
 
 void MainWindow::DeletePlot(Plot *plot)

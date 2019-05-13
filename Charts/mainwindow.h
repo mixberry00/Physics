@@ -65,7 +65,7 @@ private:
 
     int mouse_x, mouse_y;
     double alpha = 180.0, beta = 0.0;
-    float radius = 5.0f;
+    float radius = 10.0f;
 };
 
 class MouseEv : public QObject

@@ -7,6 +7,8 @@
 #include <Qt3DCore>
 
 const double g = 9.81;
+const double pi = 3.14159265359;
+const double radToDeg = 57.2957795131;
 
 class Gyroscope
 {
@@ -64,6 +66,8 @@ private:
     QQuaternion rotation;
     QQuaternion precession;
     QQuaternion nutation;
+
+    QVector3D diskPos;
 };
 
 #endif

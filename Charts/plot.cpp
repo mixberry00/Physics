@@ -16,6 +16,7 @@ Plot::Plot(std::function<double()> getarg, std::function<double()> getvalue, Mai
     plot->yAxis->setRange(0, 3);
 
     minValue = maxValue = getvalue();
+    maxArg = getarg();
 }
 
 void Plot::resizeEvent(QResizeEvent *re)
@@ -42,10 +43,13 @@ void Plot::Update()
     if (value < minValue)
         minValue = value;
 
+    if (maxArg < arg)
+        maxArg = arg;
+
     args.append(arg);
     values.append(value);
 
-    if (args.size() >= 2500)
+    if (args.size() >= 500)
     {
         args.removeAt(0);
         values.removeAt(0);
@@ -57,8 +61,7 @@ void Plot::Update()
 void Plot::Draw(QVector<double> args, QVector<double> values)
 {
     plot->graph(0)->setData(args, values, true);
-    plot->xAxis->setRange(args.last() - 5, args.last() + 2);
-    plot->yAxis->setRange(minValue * 0.9, maxValue * 1.1);
+    plot->xAxis->setRange(maxArg - 1, maxArg + 1);
     plot->replot();
 }
 
@@ -66,6 +69,7 @@ void Plot::Restart()
 {
     args.clear();
     values.clear();
-    plot->xAxis->setRange(-18, 2);
+    plot->xAxis->setRange(-1, 1);
     plot->replot();
+    maxArg = getarg();
 }

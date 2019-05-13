@@ -4,9 +4,9 @@
         <file>Res/AxisMat.png</file>
         <file>Res/box.obj</file>
         <file>Res/boxMat.png</file>
-        <file>Res/disk.obj</file>
         <file>Res/DiskMat.png</file>
         <file>Res/stand.obj</file>
         <file>Res/standMat.png</file>
+        <file>Res/disk.obj</file>
     </qresource>
 </RCC>
