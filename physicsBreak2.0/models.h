@@ -55,7 +55,6 @@ public:
     ~Model1();
 };
 
-
 class Model2 : public virtual Model, QObject
 {
 private:
@@ -96,6 +95,68 @@ public:
     QVBoxLayout *GetInf() {return inf; }
     ~Model2(){}
 };
+
+class Model3 : public virtual Model, QObject
+{
+private:
+    const double pl = 1.;
+    const double Cx = 0.3;
+    double M, L, A, W, S, E, Ek, Ep, r, time;
+    double sM, sL, sA, sW, sr;
+    void Transform();
+    void LoadModel();
+    Qt3DCore::QEntity *ent;
+    QVBoxLayout *set, *inf;
+    QLabel *i1, *i2, *i3, *i4, *k1, *k2, *k3, *k4, *k5;
+    QSlider *s1, *s2, *s3, *s4, *s5;
+    Qt3DCore::QTransform *tr1, *tr2;
+    QList<Plot *> plots;
+public:
+    Model3();
+    void Init();
+    void Compute(double);
+    void Update(double);
+    void CreatePlot(int);
+    double GetA() {return A;}
+    double GetW() {return W;}
+    double GetEk() {return Ek;}
+    double GetEp() {return Ep;}
+    double GetEnergy() {return Ek + Ep;}
+    double GetTime() {return time;}
+    Qt3DCore::QEntity *GetEntity(){return ent; }
+    QVBoxLayout *GetSet(){return set; }
+    QVBoxLayout *GetInf() {return inf; }
+    ~Model3(){}
+};
+
+class Model4 : public virtual Model, QObject
+{
+private:
+
+    void Transform();
+    void LoadModel();
+    Qt3DCore::QEntity *ent;
+    QVBoxLayout *set, *inf;
+    QLabel *i1, *k1;
+    QSlider *s1;
+    Qt3DCore::QTransform *tr1;
+    QList<Plot *> plots;
+public:
+    Model4();
+    void Init();
+    void Compute(double);
+    void Update(double);
+    void CreatePlot(int);
+    Qt3DCore::QEntity *GetEntity(){return ent; }
+    QVBoxLayout *GetSet(){return set; }
+    QVBoxLayout *GetInf() {return inf; }
+    ~Model4(){}
+};
+
+
+
+
+
 
 
 

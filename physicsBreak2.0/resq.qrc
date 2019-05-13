@@ -13,6 +13,7 @@
         <file>Res/Corridor.png</file>
         <file>Res/tablemetal.obj</file>
         <file>Res/tablemetal.png</file>
+        <file>Res/NSTU.png</file>
         <file>Stands/Math1/base.obj</file>
         <file>Stands/Math1/full.png</file>
         <file>Stands/Math1/palka.jpg</file>
@@ -30,5 +31,29 @@
         <file>Stands/Math2/diskMat.png</file>
         <file>Stands/Math2/stand.obj</file>
         <file>Stands/Math2/standMat.png</file>
+        <file>Stands/Math3/podstavka.obj</file>
+        <file>Stands/Math3/podstavka2.jpg</file>
+        <file>Stands/Math3/treeball.jpg</file>
+        <file>Stands/Math3/treeball.obj</file>
+        <file>Sup/Math3/1.png</file>
+        <file>Sup/Math3/2.png</file>
+        <file>Sup/Math3/3.png</file>
+        <file>Sup/Math3/8.png</file>
+        <file>Stands/Math4/doska.obj</file>
+        <file>Stands/Math4/doska.png</file>
+        <file>Stands/Math4/izmeritel.obj</file>
+        <file>Stands/Math4/izmeritel.png</file>
+        <file>Stands/Math4/knopka.obj</file>
+        <file>Stands/Math4/knopka.png</file>
+        <file>Stands/Math4/lineyka.obj</file>
+        <file>Stands/Math4/lineyka.png</file>
+        <file>Stands/Math4/mayatnik.obj</file>
+        <file>Stands/Math4/mayatnik.png</file>
+        <file>Stands/Math4/osi.obj</file>
+        <file>Stands/Math4/osi.png</file>
+        <file>Stands/Math4/pistol.obj</file>
+        <file>Stands/Math4/pistol.png</file>
+        <file>Stands/Math4/polka.obj</file>
+        <file>Stands/Math4/polka.png</file>
     </qresource>
 </RCC>

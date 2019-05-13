@@ -14,8 +14,18 @@ help::~help()
 }
 
 void help::updspr(int c)
-{    
-    QVBoxLayout *l = sRect();
+{
+
+    QVBoxLayout *l;
+    switch (c)
+    {
+    case 0: l = sRect(); break;
+    //case 1: l = sRect1(); break;
+    //case 2: l = sRect2(); break;
+    case 3: l = sRect3(); break;
+    //case 4: l = sRect4(); break;
+    default: l = new QVBoxLayout();
+    }
 
 
     l->addStretch();

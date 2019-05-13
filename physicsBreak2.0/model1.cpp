@@ -48,7 +48,7 @@ Model1::Model1()
 
 
 
-    i1 = new QLabel("Угол отклонения: 0.0 рад/c");
+    i1 = new QLabel("Угол отклонения: 0.0 рад");
     inf->addWidget(i1);
 
     k1 = new QLabel("Начальный угол отклонения: 0.0 рад");

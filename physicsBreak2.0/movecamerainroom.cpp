@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-
+#include "ui_mainwindow.h"
 
 const float coordR[]={15.0, 8.0, 5.5, 0.0, -2.0, -8.0, -10.0};
 const bool sideR[]={true, false, true, false, true, false, true};
@@ -8,7 +8,8 @@ int steps = 0;
 
 void MainWindow::cameraMoveTo()
 {
-
+    block = true;
+    ui->pushButton->setDisabled(true);
     float delta = camera->position().x() - coordR[curC];
     float fdeltz = camera->viewCenter().z() - 5.0f * (sideR[curC] ? 1.0f : -1.0f);
     float fdeltx = camera->viewCenter().x() - coordR[curC];
@@ -28,12 +29,17 @@ void MainWindow::cameraMoveTo()
 
     //camera->setViewCenter(QVector3D(coordR[s], 3.0, 5.0f * (sideR[c] ? 1.0f : -1.0f)));
     //k = delrot / stepR;
-    timer2->stop();
+    block = false;
     timer2->start();
 }
 
 void MainWindow::moveToRoom()
 {
+    if (block)
+    {
+        timer2->stop();
+        return;
+    }
     ++steps;
     if (fabs(double(camera->position().x() - coordR[curC])) > 1e-1 && steps % 4 == 0)
     {
@@ -45,6 +51,7 @@ void MainWindow::moveToRoom()
     }
     else if (fabs(double(camera->position().x() - coordR[curC])) <= 1e-1){
         timer2->stop();
+        ui->pushButton->setDisabled(false);
         steps = 0;
     }
 

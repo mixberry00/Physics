@@ -36,6 +36,7 @@ private:
 };
 
 QVBoxLayout *sRect();
+QVBoxLayout *sRect3();
 
 
 

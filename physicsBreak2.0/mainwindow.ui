@@ -210,7 +210,15 @@
            </widget>
           </item>
           <item>
-           <widget class="QWidget" name="setup" native="true"/>
+           <widget class="QStackedWidget" name="setup">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <widget class="QWidget" name="setupPage1" native="true"/>
+           </widget>
           </item>
           <item>
            <spacer name="verticalSpacer">
@@ -226,12 +234,38 @@
            </spacer>
           </item>
           <item>
-           <widget class="QWidget" name="status" native="true"/>
+           <widget class="QStackedWidget" name="status">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="contextMenuPolicy">
+             <enum>Qt::DefaultContextMenu</enum>
+            </property>
+            <property name="acceptDrops">
+             <bool>false</bool>
+            </property>
+            <widget class="QWidget" name="statusPage1" native="true"/>
+           </widget>
           </item>
           <item>
            <widget class="QPushButton" name="startBut">
             <property name="text">
-             <string>Запуск матника</string>
+             <string>Запуск маятника</string>
             </property>
            </widget>
           </item>
@@ -255,6 +289,34 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QLabel" name="Nstu">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>120</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::AutoText</enum>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="resq.qrc">:/Res/NSTU.png</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>false</bool>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            </property>
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -265,6 +327,8 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="resq.qrc"/>
+ </resources>
  <connections/>
 </ui>

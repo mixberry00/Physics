@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/dom.obj</file>
+        <file>res/dom.png</file>
+        <file>res/doska.obj</file>
+        <file>res/doska.png</file>
+        <file>res/izmeritel.obj</file>
+        <file>res/kartina.obj</file>
+        <file>res/knopka.obj</file>
+        <file>res/lineyka.obj</file>
+        <file>res/lineyka.png</file>
+        <file>res/mayatnik.obj</file>
+        <file>res/osi.obj</file>
+        <file>res/osi.png</file>
+        <file>res/pistol.obj</file>
+        <file>res/pistol.png</file>
+        <file>res/polka.obj</file>
+        <file>res/polka.png</file>
+        <file>res/kartina.png</file>
+        <file>res/mayatnik.png</file>
+        <file>res/izmeritel.png</file>
+        <file>res/knopka.png</file>
+    </qresource>
+</RCC>

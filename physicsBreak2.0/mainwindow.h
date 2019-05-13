@@ -78,7 +78,8 @@ private:
     float radius = 5.0f;
     float angle = 0;
     float angle1 = 0;
-    int curC = -1;
+    int curC = -1, cur = 0;
+    bool block = false;
 
     class MouseEv *ev;
 
@@ -94,6 +95,8 @@ private:
     Model *m;
     Model1 *m1;
     Model2 *m2;
+    Model3 *m3;
+    Model4 *m4;
 
 };
 

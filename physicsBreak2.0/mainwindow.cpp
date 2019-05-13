@@ -10,6 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     sceneWindow = new Qt3DExtras::Qt3DWindow();
 
+    ui->Nstu->setPixmap(ui->Nstu->pixmap()->scaled(ui->control->width() - 25,100000,Qt::KeepAspectRatio));
+
+
 
     ev = new MouseEv(this);
     sceneWindow->defaultFrameGraph()->setClearColor(QColor(QRgb(0x888888)));
@@ -86,6 +89,8 @@ void MainWindow::initModels()
 {
     m1 = new Model1();
     m2 = new Model2();
+    m3 = new Model3();
+    m4 = new Model4();
 }
 
 Qt3DRender::QCamera * MainWindow::getCamera()
@@ -117,8 +122,8 @@ void MainWindow::mouseMove(QMouseEvent *me)
             mouse_y = me->y();
 
 
-            if (beta > 80) beta = 80;
-            if (beta < -80) beta = -80;
+            if (beta > 75 * PI / 180) beta = 75 * PI / 180;
+            if (beta < -10 * PI / 180) beta = -10 * PI / 180;
             QVector3D pos(-float(cos(beta)*cos(alpha))*radius,
                         float(sin(beta))*radius,
                         float(cos(beta)*sin(alpha))*radius);
@@ -147,8 +152,8 @@ void MainWindow::mouseWheel(QWheelEvent *ev)
         if (radius < 2)
             radius = 2.f;
 
-        if (radius > 6)
-            radius = 6.f;
+        if (radius > 5.5f)
+            radius = 5.5f;
 
         QVector3D pos(-float(cos(beta)*cos(alpha))*radius,
                     float(sin(beta))*radius,
@@ -165,7 +170,7 @@ void MainWindow::CreateEntity()
 
 void MainWindow::Update()
 {
-    m->Update(0.05);
+    m->Update(0.005);
     time += 1;
     lTime->setText(QString("Время: %1:%2:%3").arg(time / 100 / 60, 2, 10,
                                                   QLatin1Char('0')).arg(time / 100 % 60, 2, 10,
@@ -227,6 +232,8 @@ void MainWindow::on_pushButton_clicked()
         qDebug()<< "Error!";
     else if (curC != -2)
     {
+        block = true;
+
         beta = 0.0;
         alpha = PI / 2.;
         time = 0;
@@ -241,23 +248,37 @@ void MainWindow::on_pushButton_clicked()
         case 1:
             m = m2;
             break;
-
+        case 2:
+            m = m3;
+            break;
+        case 3:
+            m = m4;
+            break;
         default:
             m = m1;
         }
-
         sceneWindow->setRootEntity(m->GetEntity());
+
+        QWidget *w1 = new QWidget(this), *w2 = new QWidget(this);
         QVBoxLayout *l = m->GetInf();
         l->addWidget(lTime);
-        ui->status->setLayout(l);
-        ui->setup->setLayout(m->GetSet());
-        timer2->stop();
+        ui->status->addWidget(w1);
+        ui->setup->addWidget(w2);
+        ui->status->setCurrentWidget(w1);
+        ui->setup->setCurrentWidget(w2);
+
+        w1->setLayout(l);
+        w2->setLayout(m->GetSet());
+
+
+
+
         ui->pushButton->setText("Выход из комнаты");
         ui->numbers->setHidden(true);
         ui->startBut->setVisible(true);
         ui->status->setVisible(true);
         ui->setup->setVisible(true);
-
+        cur = curC + 1;
         curC = -2;
 
         camera->setFieldOfView(60.0f);
@@ -274,13 +295,16 @@ void MainWindow::on_pushButton_clicked()
         camera->setFieldOfView(100.0f);
         camera->setPosition(QVector3D(20.0, 3.0, 0.0));
         camera->setViewCenter(QVector3D(19.0, 3.0, 0.0));
-        ui->numbers->setVisible(true);
+
         curC = -1;
+        cur = 0;
         ui->pushButton->setText("Перейти в комнату");
-        ui->startBut->setVisible(false);
         ui->status->setHidden(true);
         ui->setup->setHidden(true);
-
+        ui->startBut->setHidden(true);
+        ui->numbers->setVisible(true);
+        ui->setup->removeWidget(ui->setup->widget(0));
+        ui->status->removeWidget(ui->setup->widget(0));
         timer->stop();        
         uprend->start();
     }
@@ -288,7 +312,7 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    hwind->updspr(1);
+    hwind->updspr(cur);
     hwind->show();
 }
 
