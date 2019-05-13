@@ -85,6 +85,7 @@ MainWindow::~MainWindow()
 void MainWindow::initModels()
 {
     m1 = new Model1();
+    m2 = new Model2();
 }
 
 Qt3DRender::QCamera * MainWindow::getCamera()
@@ -164,7 +165,7 @@ void MainWindow::CreateEntity()
 
 void MainWindow::Update()
 {
-    mainF(0.005);
+    m->Update(0.05);
     time += 1;
     lTime->setText(QString("Время: %1:%2:%3").arg(time / 100 / 60, 2, 10,
                                                   QLatin1Char('0')).arg(time / 100 % 60, 2, 10,
@@ -180,52 +181,44 @@ void MainWindow::Repaint()
 
 void MainWindow::on_room1_clicked()
 {
-
     curC = 0;
     cameraMoveTo();
 }
 
 void MainWindow::on_room2_clicked()
 {
-
     curC = 1;
     cameraMoveTo();
 }
 
 void MainWindow::on_room3_clicked()
 {
-
     curC = 2;
     cameraMoveTo();
 }
 
 void MainWindow::on_room4_clicked()
 {
-
     curC = 3;
     cameraMoveTo();
 }
 
 void MainWindow::on_room5_clicked()
 {
-
     curC = 4;
     cameraMoveTo();
 }
 
 void MainWindow::on_room6_clicked()
 {
-
     curC = 5;
     cameraMoveTo();
 }
 
 void MainWindow::on_room7_clicked()
 {
-
     curC = 6;
     cameraMoveTo();
-
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -239,25 +232,26 @@ void MainWindow::on_pushButton_clicked()
         time = 0;
         lTime->setText("Время: 00:00:00");
 
-        camera->setFieldOfView(60.0f);
-        QVector3D pos(-float(cos(beta)*cos(alpha))*radius,
-                    float(sin(beta))*radius,
-                    float(cos(beta)*sin(alpha))*radius);
-        camera->setPosition(pos);
-        camera->setViewCenter(QVector3D(0.0, 0.0, 0.0));
 
-        sceneWindow->setRootEntity(m1->GetEntity());
-        mainF = [this](double k)->void {return m1->Update(k);};
-        QVBoxLayout *l = m1->GetInf();
+        switch (curC)
+        {
+        case 0:
+            m = m1;
+            break;
+        case 1:
+            m = m2;
+            break;
+
+        default:
+            m = m1;
+        }
+
+        sceneWindow->setRootEntity(m->GetEntity());
+        QVBoxLayout *l = m->GetInf();
         l->addWidget(lTime);
         ui->status->setLayout(l);
-        ui->setup->setLayout(m1->GetSet());
-
-
+        ui->setup->setLayout(m->GetSet());
         timer2->stop();
-
-
-
         ui->pushButton->setText("Выход из комнаты");
         ui->numbers->setHidden(true);
         ui->startBut->setVisible(true);
@@ -265,6 +259,13 @@ void MainWindow::on_pushButton_clicked()
         ui->setup->setVisible(true);
 
         curC = -2;
+
+        camera->setFieldOfView(60.0f);
+        QVector3D pos(-float(cos(beta)*cos(alpha))*radius,
+                    float(sin(beta))*radius,
+                    float(cos(beta)*sin(alpha))*radius);
+        camera->setPosition(pos);
+        camera->setViewCenter(QVector3D(0.0, 0.0, 0.0));
         uprend->start();
     }
     else
@@ -296,7 +297,7 @@ void MainWindow::on_startBut_clicked()
     //sections//
     if (!timer->isActive())
     {
-        m1->Init();
+        m->Init();
         time = 0;
         lTime->setText("Время: 00:00:00");
         ui->startBut->setText("Остановить");

@@ -35,7 +35,8 @@ SOURCES += \
     sup.cpp \
     model1.cpp \
     qcustomplot.cpp \
-    plot.cpp
+    plot.cpp \
+    model2.cpp
 
 HEADERS += \
     mainwindow.h \

@@ -22,5 +22,13 @@
         <file>Stands/Math1/sharik.jpg</file>
         <file>Res/Room.obj</file>
         <file>Res/Room.png</file>
+        <file>Stands/Math2/axis.obj</file>
+        <file>Stands/Math2/axisMat.png</file>
+        <file>Stands/Math2/box.obj</file>
+        <file>Stands/Math2/boxMat.png</file>
+        <file>Stands/Math2/disk.obj</file>
+        <file>Stands/Math2/diskMat.png</file>
+        <file>Stands/Math2/stand.obj</file>
+        <file>Stands/Math2/standMat.png</file>
     </qresource>
 </RCC>

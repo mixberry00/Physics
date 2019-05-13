@@ -23,6 +23,8 @@ Qt3DCore::QEntity *addObject(Qt3DCore::QEntity *entity, QString obj, QString tex
 Model1::Model1()
 {
     ent = new Qt3DCore::QEntity();
+    inf =  new QVBoxLayout();
+    set =  new QVBoxLayout();
 
     angle = 0.;
     beta = 0.;
@@ -30,19 +32,21 @@ Model1::Model1()
 
     addObject(ent, ":/Res/Room.obj", ":/Res/Room.png");
     addObject(ent, ":/Res/tablemetal.obj", ":/Res/tablemetal.png");
-    addObject(ent, ":/Stands/Math1/base.obj", ":/Stands/Math1/full.png");
+    addObject(ent, ":/Res/ceiling.obj", ":/Res/ceiling.jpg");
+
     addObject(ent, ":/Stands/Math1/base.obj", ":/Stands/Math1/full.png");
     Qt3DCore::QEntity *obj1 = addObject(ent, ":/Stands/Math1/palka.obj", ":/Stands/Math1/palka.jpg");
     Qt3DCore::QEntity *obj2 = addObject(ent, ":/Stands/Math1/shar1.obj", ":/Stands/Math1/sharik.jpg");
     Qt3DCore::QEntity *obj3 = addObject(ent, ":/Stands/Math1/shar2.obj", ":/Stands/Math1/sharik.jpg");
 
     tr1 = new Qt3DCore::QTransform();
+    tr2 = new Qt3DCore::QTransform();
+    tr3 = new Qt3DCore::QTransform();
     obj1->addComponent(tr1);
-    obj2->addComponent(tr1);
-    obj3->addComponent(tr1);
+    obj2->addComponent(tr2);
+    obj3->addComponent(tr3);
 
-    inf =  new QVBoxLayout();
-    set =  new QVBoxLayout();
+
 
     i1 = new QLabel("Угол отклонения: 0.0 рад/c");
     inf->addWidget(i1);
@@ -50,6 +54,7 @@ Model1::Model1()
     k1 = new QLabel("Начальный угол отклонения: 0.0 рад");
     k2 = new QLabel("Коэффициент сопротивления: 0.0");
     k3 = new QLabel("Цикличиская частота: 0.02 рад/c");
+
 
     s1 = new QSlider(Qt::Horizontal); s1->setMinimum(0); s1->setMaximum(int(PI * 500.));
     connect(s1, &QSlider::valueChanged, [=]()
@@ -92,20 +97,22 @@ void Model1::Init()
     t = 0.;
 }
 
-void Model1::Compute(double dt)
+void Model1::Compute()
 {
-    t+=dt;
     angle = A0 * pow(e, -beta * t) * cos(omega * t);
 }
 
 void Model1::Transform()
 {
    tr1->setRotation(QQuaternion::fromAxisAndAngle(QVector3D(0.0, 1.0, 0.0), float(angle * 180. / PI)));
+   tr2->setRotation(QQuaternion::fromAxisAndAngle(QVector3D(0.0, 1.0, 0.0), float(angle * 180. / PI)));
+   tr3->setRotation(QQuaternion::fromAxisAndAngle(QVector3D(0.0, 1.0, 0.0), float(angle * 180. / PI)));
 }
 
 void Model1::Update(double dt)
 {
-    Compute(dt);
+    t+=dt;
+    Compute();
     Transform();
 
     for (auto plot : plots)

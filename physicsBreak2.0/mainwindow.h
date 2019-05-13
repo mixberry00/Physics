@@ -86,14 +86,14 @@ private:
 
     QTimer *timer, *uprend, *timer2;
 
-    std::function <void(double)> mainF;
-
 
 
 
     void cameraMoveTo();
 
+    Model *m;
     Model1 *m1;
+    Model2 *m2;
 
 };
 
