@@ -37,21 +37,24 @@ void Gyroscope::SetRadius(double radius)
 {
     this->radius = radius;
     CalculateConstants();
-    Transform();
+    diskTransform->setScale3D(QVector3D(10 * radius,  10 * radius, 1.0));
 }
 
 void Gyroscope::SetLength(double length)
 {
     this->length = length;
     CalculateConstants();
-    Transform();
+    diskTransform->setTranslation(QVector3D(0.0, 0.0, 10 * length - 2));
 }
 
 void Gyroscope::SetTheta(double theta)
 {
     this->theta = theta;
     CalculateConstants();
-    Transform();
+
+    nutation = QQuaternion::fromAxisAndAngle(QVector3D(1.0, 0.0, 0.0), 57 *theta - 90);
+    diskTransform->setRotation(nutation);
+    axisTransform->setRotation(nutation);
 }
 
 void Gyroscope::SetPsiDot(double psi_dot)
@@ -161,6 +164,13 @@ void Gyroscope::SetTransform()
     disk->addComponent(diskTransform);
     axis->addComponent(axisTransform);
     box->addComponent(boxTransform);
+
+    nutation = QQuaternion::fromAxisAndAngle(QVector3D(1.0, 0.0, 0.0), 57 *theta - 90);
+    diskTransform->setRotation(nutation);
+    axisTransform->setRotation(nutation);
+
+    diskTransform->setScale3D(QVector3D(10 * radius,  10 * radius, 1.0));
+    diskTransform->setTranslation(QVector3D(0.0, 0.0, 10 * length - 2));
 }
 
 double Gyroscope::dy1(double arg)
