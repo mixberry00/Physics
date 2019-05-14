@@ -20,7 +20,7 @@ void Model3::LoadModel()
     //tr2 = new Qt3DCore::QTransform();
 
     pend->addComponent(tr1);
-    tr1->setTranslation(QVector3D(0.0, 1.733f, 0.0));
+    tr1->setTranslation(QVector3D(0.0, 1.6f, 0.0));
 }
 
 Model3::Model3()
@@ -185,23 +185,23 @@ void Model3::CreatePlot(int plotID)
     {
         case 0:
             plot = new Plot([this]()->double{ return this->GetTime(); },
-                            [this]()->double{ return this->GetA(); });
+                            [this]()->double{ return this->GetA(); }, "Угловое смещение, рад");
         break;
         case 1:
             plot = new Plot([this]()->double{ return this->GetTime(); },
-                            [this]()->double{ return this->GetW(); });
+                            [this]()->double{ return this->GetW(); }, "Угловая скорость, рад/c");
         break;
         case 2:
             plot = new Plot([this]()->double{ return this->GetTime(); },
-                            [this]()->double{ return this->GetEp(); });
+                            [this]()->double{ return this->GetEp(); }, "Потенциальная энергия, Дж");
         break;
         case 3:
             plot = new Plot([this]()->double{ return this->GetTime(); },
-                            [this]()->double{ return this->GetEk(); });
+                            [this]()->double{ return this->GetEk(); }, "Кинетическая энергия, Дж");
         break;
         case 4:
             plot = new Plot([this]()->double{ return this->GetTime(); },
-                            [this]()->double{ return this->GetEnergy(); });
+                            [this]()->double{ return this->GetEnergy(); }, "Полная энергия, Дж");
         break;
     }
 

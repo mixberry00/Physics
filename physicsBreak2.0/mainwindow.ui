@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Наш проект называется осциллятор</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -217,7 +217,7 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <widget class="QWidget" name="setupPage1" native="true"/>
+            <widget class="QWidget" name="setupPage1"/>
            </widget>
           </item>
           <item>
@@ -259,7 +259,7 @@
             <property name="acceptDrops">
              <bool>false</bool>
             </property>
-            <widget class="QWidget" name="statusPage1" native="true"/>
+            <widget class="QWidget" name="statusPage1"/>
            </widget>
           </item>
           <item>

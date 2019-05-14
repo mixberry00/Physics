@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Мы придумали построение графиков</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QCustomPlot" name="PlotSurface" native="true">

@@ -19,7 +19,7 @@ public:
         Closed
     };
 
-    explicit Plot(std::function<double()>, std::function<double()>, QWidget *p = nullptr);
+    explicit Plot(std::function<double()>, std::function<double()>, QString, QWidget *p = nullptr);
 
     void resizeEvent(QResizeEvent *) override;
     void closeEvent(QCloseEvent *) override;

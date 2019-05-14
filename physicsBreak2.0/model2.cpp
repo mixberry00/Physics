@@ -170,17 +170,24 @@ void Model2::LoadModel()
     addObject(ent, ":/Res/ceiling.obj", ":/Res/ceiling.jpg");
 
     Qt3DCore::QEntity *box = addObject(ent, ":/Stands/Math2/box.obj", ":/Stands/Math2/boxMat.png");
-    Qt3DCore::QEntity *axis =addObject(ent, ":/Stands/Math2/axis.obj", ":/Stands/Math2/axisMat.png");
-    Qt3DCore::QEntity *disk =addObject(ent, ":/Stands/Math2/disk.obj", ":/Stands/Math2/diskMat.png");
-    addObject(ent, ":/Stands/Math2/stand.obj", ":/Stands/Math2/standMat.png");
+    Qt3DCore::QEntity *axis = addObject(ent, ":/Stands/Math2/axis.obj", ":/Stands/Math2/axisMat.png");
+    Qt3DCore::QEntity *disk = addObject(ent, ":/Stands/Math2/disk.obj", ":/Stands/Math2/diskMat.png");
+    Qt3DCore::QEntity *stand = addObject(ent, ":/Stands/Math2/stand.obj", ":/Stands/Math2/standMat.png");
 
     tr1 = new Qt3DCore::QTransform();
     tr2 = new Qt3DCore::QTransform();
     tr3 = new Qt3DCore::QTransform();
+    tr4 = new Qt3DCore::QTransform();
 
     disk->addComponent(tr1);
     axis->addComponent(tr2);
     box->addComponent(tr3);
+    stand->addComponent(tr4);
+
+    tr1->setTranslation(QVector3D(0.0, 1.0, 0.0));
+     tr2->setTranslation(QVector3D(0.0, 1.0, 0.0));
+      tr3->setTranslation(QVector3D(0.0, 1.0, 0.0));
+       tr4->setTranslation(QVector3D(0.0, 1.0, 0.0));
 }
 
 void Model2::Update(double dt)
@@ -211,11 +218,11 @@ void Model2::CreatePlot(int plotID)
     {
         case 0:
             plot = new Plot([this]()->double{ return this->GetTime(); },
-                            [this]()->double{ return this->GetPhi(); });
+                            [this]()->double{ return this->GetPhi(); },  "Углол Phi");
         break;
         case 1:
             plot = new Plot([this]()->double{ return this->GetTime(); },
-                            [this]()->double{ return this->GetPsi(); });
+                            [this]()->double{ return this->GetPsi(); }, "Углол Psi");
         break;
     }
 

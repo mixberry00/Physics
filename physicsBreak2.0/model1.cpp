@@ -53,7 +53,7 @@ Model1::Model1()
 
     k1 = new QLabel("Начальный угол отклонения: 0.0 рад");
     k2 = new QLabel("Коэффициент сопротивления: 0.0");
-    k3 = new QLabel("Цикличиская частота: 0.02 рад/c");
+    k3 = new QLabel("Циклическая частота: 0.02 рад/c");
 
 
     s1 = new QSlider(Qt::Horizontal); s1->setMinimum(0); s1->setMaximum(int(PI * 500.));
@@ -74,7 +74,7 @@ Model1::Model1()
     connect(s3, &QSlider::valueChanged, [=]()
     {
         this->omega = double(s3->value()) / 50.;
-        k3->setText(QString("Цикличиская частота: %1 рад/c").arg(omega));
+        k3->setText(QString("Циклическая частота: %1 рад/c").arg(omega));
     });
     QPushButton *p1 = new QPushButton("Построить график перемещения");
     connect(p1, &QPushButton::clicked, [=]()
@@ -135,7 +135,7 @@ void Model1::CreatePlot(int plotID)
     {
         case 0:
             plot = new Plot([this]()->double{ return this->GetTime(); },
-                            [this]()->double{ return this->GetAngle(); });
+                            [this]()->double{ return this->GetAngle(); }, "Угловое смещение, рад");
         break;
     }
 

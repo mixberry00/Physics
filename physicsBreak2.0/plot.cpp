@@ -2,7 +2,7 @@
 #include "ui_plot.h"
 #include "mainwindow.h"
 
-Plot::Plot(std::function<double()> getarg, std::function<double()> getvalue, QWidget *p) :
+Plot::Plot(std::function<double()> getarg, std::function<double()> getvalue, QString s,QWidget *p) :
     QMainWindow(p),
     ui(new Ui::Plot),
     getarg(getarg),
@@ -14,8 +14,16 @@ Plot::Plot(std::function<double()> getarg, std::function<double()> getvalue, QWi
 
     plot = ui->PlotSurface;
 
+    plot->xAxis->setLabel("Время, мс");
+    plot->yAxis->setLabel(s);
+
+
+
     plot->addGraph();
+    plot->xAxis->setRange(0, 20);
     plot->yAxis->setRange(-5, 5);
+
+    plot->setInteractions(QCP::iRangeDrag|QCP::iRangeZoom);
 }
 
 void Plot::resizeEvent(QResizeEvent *re)
@@ -43,7 +51,7 @@ void Plot::Update()
     args.append(arg);
     values.append(value);
 
-    if (args.size() >= 2500)
+    if (args.size() >= 250000)
     {
         args.removeAt(0);
         values.removeAt(0);
@@ -55,7 +63,8 @@ void Plot::Update()
 void Plot::Draw(QVector<double> args, QVector<double> values)
 {
     plot->graph(0)->setData(args, values, true);
-    plot->xAxis->setRange(args.last() - 18, args.last() + 2);
+    if (args.last() > 18)
+        plot->xAxis->setRange(args.last() - 18, args.last() + 2);
     plot->replot();
 }
 
