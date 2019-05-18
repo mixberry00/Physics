@@ -1,0 +1,13 @@
+# Blender MTL File: 'prus.obj'
+# Material Count: 1
+
+newmtl Material.003
+Ns 25.490196
+Ka 0.184874 0.184874 0.184874
+Kd 0.603806 0.211484 0.044014
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd ster.png
