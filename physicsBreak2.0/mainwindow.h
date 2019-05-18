@@ -93,10 +93,7 @@ private:
     void cameraMoveTo();
 
     Model *m;
-    Model1 *m1;
-    Model2 *m2;
-    Model3 *m3;
-    Model4 *m4;
+
 
 };
 

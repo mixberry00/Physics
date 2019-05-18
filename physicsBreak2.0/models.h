@@ -24,6 +24,7 @@ public:
     virtual Qt3DCore::QEntity *GetEntity() = 0;
     virtual QVBoxLayout *GetSet() = 0;
     virtual QVBoxLayout *GetInf() = 0;
+    virtual ~Model() = default;
 };
 
 

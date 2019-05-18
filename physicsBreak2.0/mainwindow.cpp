@@ -87,10 +87,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::initModels()
 {
-    m1 = new Model1();
-    m2 = new Model2();
-    m3 = new Model3();
-    m4 = new Model4();
 }
 
 Qt3DRender::QCamera * MainWindow::getCamera()
@@ -243,19 +239,19 @@ void MainWindow::on_pushButton_clicked()
         switch (curC)
         {
         case 0:
-            m = m1;
+            m = new Model1();
             break;
         case 1:
-            m = m2;
+            m = new Model2();
             break;
         case 2:
-            m = m3;
+            m = new Model3();
             break;
         case 3:
-            m = m4;
+            m = new Model4();
             break;
         default:
-            m = m1;
+            m = new Model1();
         }
         sceneWindow->setRootEntity(m->GetEntity());
 
@@ -305,6 +301,7 @@ void MainWindow::on_pushButton_clicked()
         ui->numbers->setVisible(true);
         ui->setup->removeWidget(ui->setup->widget(0));
         ui->status->removeWidget(ui->setup->widget(0));
+        m->~Model();
         timer->stop();        
         uprend->start();
     }

@@ -56,5 +56,6 @@
         <file>Stands/Math4/polka.obj</file>
         <file>Stands/Math4/polka.png</file>
         <file>Stands/Math3/glassball.jpg</file>
+        <file>splash.jpg</file>
     </qresource>
 </RCC>
